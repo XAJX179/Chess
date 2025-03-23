@@ -3,6 +3,12 @@
 # Chess
 module Chess
   # Pieces
-  class Pieces
+  module Pieces
+    # Piece
+    class Piece
+      def test
+        puts 'hello world'
+      end
+    end
   end
 end
