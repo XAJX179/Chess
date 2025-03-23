@@ -23,6 +23,6 @@ a terminal chess game.
 > [!NOTE]
 > **In-Progress**
 
-![Documentation](https://xajx179.github.io/Chess/)
+[Documentation](https://xajx179.github.io/Chess/)
 
 ## 🫣 Peek
