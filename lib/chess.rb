@@ -10,6 +10,7 @@ require_relative 'chess/pieces/knight'
 require_relative 'chess/pieces/pawn'
 require_relative 'chess/pieces/queen'
 require_relative 'chess/pieces/rook'
+require 'tty/prompt'
 
 # Chess
 module Chess
