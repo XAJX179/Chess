@@ -22,11 +22,9 @@ module Chess
     end
 
     # Promps User to select between saved data.
-    # {Save#read} is used to read saved file.
     #
     # @return [String] the FEN code of selected save name.
-    def prompt_select_save
-      save_data = read
+    def prompt_select_save(save_data)
       names = save_data.keys
       prompt = TTY::Prompt.new
       selected_save_key = prompt.select('Select a save.') do |menu|

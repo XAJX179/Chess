@@ -21,8 +21,12 @@ module Chess
 
     private
 
+    # selects save code and passes to {load_game_with_code}
+    #
+    # {Save#read} is used to read the file data
+    # @return [void]
     def select_save
-      fen_code = prompt_select_save
+      fen_code = prompt_select_save(read)
       load_game_with_code(fen_code)
     end
 
@@ -31,8 +35,6 @@ module Chess
       load_game_with_code(fen_code)
     end
 
-    def load_game_with_code(fen_code)
-      
-    end
+    def load_game_with_code(fen_code); end
   end
 end
