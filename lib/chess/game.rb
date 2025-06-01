@@ -22,7 +22,7 @@ module Chess
     private
 
     def select_save
-      pp fen_code = prompt_select_save
+      fen_code = prompt_select_save
       load_game_with_code(fen_code)
     end
 
@@ -31,6 +31,8 @@ module Chess
       load_game_with_code(fen_code)
     end
 
-    def load_game_with_code(fen_code); end
+    def load_game_with_code(fen_code)
+      
+    end
   end
 end

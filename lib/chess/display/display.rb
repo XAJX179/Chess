@@ -36,5 +36,20 @@ module Chess
       end
       save_data[selected_save_key]
     end
+
+    # Prompts User to enter a FEN code.
+    # @note method expects user is entering a valid FEN code.
+    #
+    # @return [String] the FEN code entered.
+    def prompt_enter_code
+      prompt = TTY::Prompt.new
+      prompt.ask('Enter a valid self attested FEN code : ') do |question|
+        regex = %r{\A[prnbqkPRNBQK0-9/ w\-a-h]+\z} # only checks if valid characters
+        # are used like 1-8,kqbnrKQBNR, w for white chance(b=bisop already),
+        # a-h(for en passant) and the slash(/).
+        question.required true
+        question.validate regex
+      end
+    end
   end
 end

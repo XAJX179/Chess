@@ -1,13 +1,14 @@
 # frozen_string_literal: true
 
 desc 'runs tests by default.'
-task default: %i[hello tests] do
+task default: %i[tests docs] do
   puts 'default rake run completed.'
 end
 
 desc 'says hello to user'
-task :hello do
-  puts 'hello user'
+task :docs do
+  sh 'yard doc --private'
+  puts 'docs generated.'
 end
 
 desc 'running rspec'

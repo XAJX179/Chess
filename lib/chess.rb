@@ -21,6 +21,7 @@ require_relative 'chess/game'
 
 # Chess
 module Chess
+  # @return [Game]
   def self.new
     Game.new
   end
