@@ -2,8 +2,12 @@
 
 # Chess
 module Chess
-  # Display
+  # Console Display
   module Display
+    # Prompts user to select between New Game
+    # /Load Save/Load Code(FEN) and returns the choice.
+    #
+    # @return [Integer] 0 for New Game. 1 for Load Save. 2 for Load Code(FEN).
     def prompt_start_choices
       prompt = TTY::Prompt.new
       prompt.select('Create new game or load save/code?') do |menu|
@@ -17,12 +21,20 @@ module Chess
       end
     end
 
+    # Promps User to select between saved data.
+    # {Save#read} is used to read saved file.
+    #
+    # @return [String] the FEN code of selected save name.
     def prompt_select_save
+      save_data = read
+      names = save_data.keys
       prompt = TTY::Prompt.new
-      prompt.select('Select a save.') do |menu|
-        # TODO: get saved codes from save.json and list them here.
-        # menu.choice name: 'New Game', value: 1
+      selected_save_key = prompt.select('Select a save.') do |menu|
+        names.each do |name|
+          menu.choice name: name, value: name
+        end
       end
+      save_data[selected_save_key]
     end
   end
 end

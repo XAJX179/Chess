@@ -1,13 +1,15 @@
 # frozen_string_literal: true
 
-require_relative 'display/display'
-
 # Chess
 module Chess
   # Game class
   class Game
     include Display
+    include Save
 
+    # Starts a Chess Game
+    #
+    # @return [void]
     def start
       choice = prompt_start_choices
       case choice
@@ -20,7 +22,7 @@ module Chess
     private
 
     def select_save
-      fen_code = prompt_select_save
+      pp fen_code = prompt_select_save
       load_game_with_code(fen_code)
     end
 
@@ -29,7 +31,6 @@ module Chess
       load_game_with_code(fen_code)
     end
 
-    def load_game_with_code(fen_code)
-    end
+    def load_game_with_code(fen_code); end
   end
 end
