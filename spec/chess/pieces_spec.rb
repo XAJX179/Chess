@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative '../../lib/chess/pieces'
-
 describe Chess::Pieces::Piece do
   subject(:piece) { described_class.new }
 

@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require_relative '../lib/chess'
-
 describe Chess do
   describe '#new' do
     context 'when called' do
