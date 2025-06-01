@@ -24,7 +24,7 @@ jobs:
       - name: install gems
         run: bundle install
       - name: generate docs
-        run: bundle exec yard doc
+        run: bundle exec yard doc --private
 
       - name: upload static files as artifact
         id: deployment
