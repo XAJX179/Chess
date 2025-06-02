@@ -46,7 +46,7 @@ module Chess
         # are used like 1-8,kqbnrKQBNR, w for white chance(b=bisop already),
         # a-h(for en passant) and the slash(/).
         question.required true
-        question.validate regex
+        question.validate regex, 'Invalid FEN Code.            '
       end
     end
   end

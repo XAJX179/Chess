@@ -19,9 +19,7 @@ module Chess
       else start end
     end
 
-    private
-
-    # selects save code and passes to {load_game_with_code}
+    # choice to resume a saved game.
     #
     # {Save#read} is used to read the file data
     # @return [void]
@@ -30,6 +28,10 @@ module Chess
       load_game_with_code(fen_code)
     end
 
+    # choice to start a game using FEN code
+    #
+    # {prompt_enter_code} is used for prompting user.
+    # @return [void]
     def enter_code
       fen_code = prompt_enter_code
       load_game_with_code(fen_code)
