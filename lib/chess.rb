@@ -18,11 +18,14 @@ require_relative 'chess/pieces/rook'
 require_relative 'chess/board'
 require_relative 'chess/player'
 require_relative 'chess/game'
+require_relative 'chess/play_game'
 
 # Chess
 module Chess
-  # @return [Game]
-  def self.new
-    Game.new
+  # calls {start_game} the script file at chess/play_game
+  #
+  # @return [void]
+  def self.start
+    start_game
   end
 end
