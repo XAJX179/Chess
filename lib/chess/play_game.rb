@@ -38,5 +38,9 @@ def enter_code(game_obj)
   load_game_with_code(fen_code)
 end
 
+# loads a game with given code
+# @param fen_code [String] Fen notation for chess board.
+# @return [void]
 def load_game_with_code(fen_code)
+  Chess::Board.new(fen_code)
 end
