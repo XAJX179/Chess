@@ -26,7 +26,7 @@ end
 # @return [void]
 def select_save(game_obj)
   fen_code = game_obj.prompt_select_save(game_obj.read)
-  load_game_with_code(fen_code)
+  load_game_with_code(game_obj, fen_code)
 end
 
 # choice to start a game_obj using FEN code
@@ -35,12 +35,13 @@ end
 # @return [void]
 def enter_code(game_obj)
   fen_code = game_obj.prompt_enter_code
-  load_game_with_code(fen_code)
+  load_game_with_code(game_obj, fen_code)
 end
 
 # loads a game with given code
 # @param fen_code [String] Fen notation for chess board.
 # @return [void]
-def load_game_with_code(fen_code)
-  Chess::Board.new(fen_code)
+def load_game_with_code(game, fen_code)
+  board = Chess::Board.new(fen_code)
+  game.display_board(board.data)
 end

@@ -6,6 +6,10 @@ module Chess
   module Pieces
     # Piece
     class Piece
+      def initialize(color)
+        @color = color
+      end
+
       def test
         puts 'hello world'
       end

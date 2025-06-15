@@ -49,7 +49,7 @@ module Chess
       board = files_ord.to_h { |file| [file.chr, Array.new(8) { '' }] } # empty board
 
       board = fill_board(ranks, board)
-      pp @data = board
+      @data = board
     end
 
     # fills board with rank wise data.
@@ -75,10 +75,68 @@ module Chess
       rank.each do |letter|
         if letter.to_i.zero?
           index += 1
-          board[(96 + index).chr][ranks_array_index] = letter
+          insert_piece(board, index, ranks_array_index, letter)
         else
           index += letter.to_i
         end
+      end
+    end
+
+    # insert a piece on given board
+    def insert_piece(board, index, ranks_array_index, letter)
+      board[(96 + index).chr][ranks_array_index] = create_piece(letter)
+    end
+
+    # create piece from the letter
+    # @param letter [String]
+    # @return any subclass of {Chess::Pieces::Piece}
+    def create_piece(letter)
+      if letter == letter.upcase
+        white_piece(letter)
+      else
+        black_piece(letter)
+      end
+    end
+
+    # create white color piece from the letter
+    # @param letter [String]
+    # @return any subclass of {Chess::Pieces::Piece} with color white
+    def white_piece(letter) # rubocop:disable Metrics/MethodLength
+      color = 'white'
+      case letter
+      when 'R'
+        Chess::Pieces::Rook.new(color)
+      when 'N'
+        Chess::Pieces::Knight.new(color)
+      when 'B'
+        Chess::Pieces::Bishop.new(color)
+      when 'Q'
+        Chess::Pieces::Queen.new(color)
+      when 'K'
+        Chess::Pieces::King.new(color)
+      when 'P'
+        Chess::Pieces::Pawn.new(color)
+      end
+    end
+
+    # create black color piece from the letter
+    # @param letter [String]
+    # @return any subclass of {Chess::Pieces::Piece} with color black
+    def black_piece(letter) # rubocop:disable Metrics/MethodLength
+      color = 'black'
+      case letter
+      when 'r'
+        Chess::Pieces::Rook.new(color)
+      when 'n'
+        Chess::Pieces::Knight.new(color)
+      when 'b'
+        Chess::Pieces::Bishop.new(color)
+      when 'q'
+        Chess::Pieces::Queen.new(color)
+      when 'k'
+        Chess::Pieces::King.new(color)
+      when 'p'
+        Chess::Pieces::Pawn.new(color)
       end
     end
   end
