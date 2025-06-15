@@ -45,8 +45,8 @@ module Chess
     # @return [Hash] board data
     def create_board(board_data)
       ranks = board_data.split('/')
-      files_ord = (97..104) # value for 'a' to 'h'
-      board = files_ord.to_h { |file| [file.chr, Array.new(8) { '' }] } # empty board
+      files = ('a'..'h') # value for 'a' to 'h'
+      board = files.to_h { |file| [file, Array.new(8) { '' }] } # empty board
 
       board = fill_board(ranks, board)
       @data = board

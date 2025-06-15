@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 desc 'runs tests by default.'
-task default: %i[tests docs] do
+task default: %i[tests docs graph] do
   puts 'default rake run completed.'
 end
 
