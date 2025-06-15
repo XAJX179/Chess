@@ -49,5 +49,13 @@ module Chess
         question.validate regex, 'Invalid FEN Code.            '
       end
     end
+
+    # displays board with ASCII characters
+    # @param board_data [Hash]
+    # @return [void]
+    def display_board(board_data)
+      # TODO: implement display_board
+      pp board_data
+    end
   end
 end
