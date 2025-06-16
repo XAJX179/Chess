@@ -55,7 +55,42 @@ module Chess
     # @return [void]
     def display_board(board_data)
       # TODO: implement display_board
-      pp board_data
+      print_files(board_data)
+      (0..7).reverse_each do |rank|
+        print rank + 1
+        ('a'..'h').each do |file|
+          print_piece(board_data, file, rank)
+        end
+        print rank + 1
+        puts
+      end
+      print_files(board_data)
+    end
+
+    # prints files above the board 'a' to 'h'
+    def print_files(board_data)
+      print ' '
+      board_data.each_key { |key| print " #{key} " }
+      puts
+    end
+
+    def print_piece(board_data, file, rank)
+      piece = board_data[file][rank]
+      if piece.is_a?(Pieces::Rook)
+        print piece.color == 'white' ? ' ' + "\u2656" + ' ' : ' ' + "\u265C" + ' '
+      elsif piece.is_a?(Pieces::Knight)
+        print piece.color == 'white' ? ' ' + "\u2658" + ' ' : ' ' + "\u265E" + ' '
+      elsif piece.is_a?(Pieces::Bishop)
+        print piece.color == 'white' ? ' ' + "\u2657" + ' ' : ' ' + "\u265D" + ' '
+      elsif piece.is_a?(Pieces::Queen)
+        print piece.color == 'white' ? ' ' + "\u2655" + ' ' : ' ' + "\u265B" + ' '
+      elsif piece.is_a?(Pieces::King)
+        print piece.color == 'white' ? ' ' + "\u2654" + ' ' : ' ' + "\u265A" + ' '
+      elsif piece.is_a?(Pieces::Pawn)
+        print piece.color == 'white' ? ' ' + "\u2659" + ' ' : ' ' + "\u265F" + ' '
+      else
+        print '   '
+      end
     end
   end
 end

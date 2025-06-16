@@ -30,13 +30,13 @@ module Chess
     # @param fen_code [String]
     # @return [void]
     def generate_data(fen_code)
-      pp fen_parts_array = fen_code.split
-      pp board_data = fen_parts_array[0]
-      pp fen_parts_array[1]
-      pp fen_parts_array[2]
-      pp fen_parts_array[3]
-      pp fen_parts_array[4]
-      pp fen_parts_array[5]
+      fen_parts_array = fen_code.split
+      board_data = fen_parts_array[0]
+      fen_parts_array[1]
+      fen_parts_array[2]
+      fen_parts_array[3]
+      fen_parts_array[4]
+      fen_parts_array[5]
       create_board(board_data)
     end
 
