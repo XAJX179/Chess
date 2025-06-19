@@ -4,6 +4,34 @@
 module Chess
   # Console Display
   module Display
+    # Colors values for use in escape code.
+    COLORS = {
+      green: '119;149;86',
+      dull_white: '235;236;208',
+      white: '255;187;143',
+      black: '1;1;1'
+    }.freeze
+
+    # background color the string
+    #
+    # @param string [String]
+    # @param name [Symbol]
+    # @return [String]
+    def bg_color(string, name)
+      value = COLORS[name]
+      "\e[48;2;#{value}m#{string}\e[0m"
+    end
+
+    # color the string
+    #
+    # @param string [String]
+    # @param name [Symbol]
+    # @return [String]
+    def color(string, name)
+      value = COLORS[name]
+      "\e[38;2;#{value}m#{string}\e[0m"
+    end
+
     # Prompts user to select between New Game
     # /Load Save/Load Code(FEN) and returns the choice.
     #
@@ -23,6 +51,7 @@ module Chess
 
     # Promps User to select between saved data.
     #
+    # @param save_data [Hash]
     # @return [String] the FEN code of selected save name.
     def prompt_select_save(save_data)
       names = save_data.keys
@@ -54,42 +83,90 @@ module Chess
     # @param board_data [Hash]
     # @return [void]
     def display_board(board_data)
-      # TODO: implement display_board
+      # TODO: implement marks for valid moves.
       print_files(board_data)
+      print_board_data(board_data)
+      print_files(board_data)
+    end
+
+    # prints the board data
+    #
+    # @param board_data [Hash]
+    # @return [void]
+    def print_board_data(board_data)
       (0..7).reverse_each do |rank|
         print rank + 1
         ('a'..'h').each do |file|
-          print_piece(board_data, file, rank)
+          bg_color_name = square_bg_color_name(file, rank)
+          print_piece(board_data, file, rank, bg_color_name)
         end
         print rank + 1
         puts
       end
-      print_files(board_data)
     end
 
     # prints files above the board 'a' to 'h'
+    #
+    # @param board_data [Hash]
+    # @return [void]
     def print_files(board_data)
       print ' '
       board_data.each_key { |key| print " #{key} " }
       puts
     end
 
-    def print_piece(board_data, file, rank)
+    # prints a single piece
+    #
+    # @param board_data [Hash]
+    # @param file [String]
+    # @param rank [Integer]
+    # @param bg_color_name [Symbol]
+    # @return [void]
+    def print_piece(board_data, file, rank, bg_color_name) # rubocop:disable Metrics/MethodLength
       piece = board_data[file][rank]
-      if piece.is_a?(Pieces::Rook)
-        print piece.color == 'white' ? ' ' + "\u2656" + ' ' : ' ' + "\u265C" + ' '
-      elsif piece.is_a?(Pieces::Knight)
-        print piece.color == 'white' ? ' ' + "\u2658" + ' ' : ' ' + "\u265E" + ' '
-      elsif piece.is_a?(Pieces::Bishop)
-        print piece.color == 'white' ? ' ' + "\u2657" + ' ' : ' ' + "\u265D" + ' '
-      elsif piece.is_a?(Pieces::Queen)
-        print piece.color == 'white' ? ' ' + "\u2655" + ' ' : ' ' + "\u265B" + ' '
-      elsif piece.is_a?(Pieces::King)
-        print piece.color == 'white' ? ' ' + "\u2654" + ' ' : ' ' + "\u265A" + ' '
-      elsif piece.is_a?(Pieces::Pawn)
-        print piece.color == 'white' ? ' ' + "\u2659" + ' ' : ' ' + "\u265F" + ' '
+      case piece
+      when Pieces::Rook
+        print piece_string(piece, "\u{1fa02}", bg_color_name)
+      when Pieces::Knight
+        print piece_string(piece, "\u{1fa04}", bg_color_name)
+      when Pieces::Bishop
+        print piece_string(piece, "\u{1fa03}", bg_color_name)
+      when Pieces::Queen
+        print piece_string(piece, "\u{1fa01}", bg_color_name)
+      when Pieces::King
+        print piece_string(piece, "\u{1fa00}", bg_color_name)
+      when Pieces::Pawn
+        print piece_string(piece, "\u{1fa05}", bg_color_name)
       else
-        print '   '
+        print bg_color('   ', bg_color_name)
+      end
+    end
+
+    # returns background color name for the square at
+    # given file and rank.
+    #
+    # @param file [String]
+    # @param rank [Integer]
+    # @return [Symbol]
+    def square_bg_color_name(file, rank)
+      if (file.ord.odd? && rank.odd?) || (file.ord.even? && rank.even?)
+        :green
+      else
+        :dull_white
+      end
+    end
+
+    # arrange and format strings for the piece
+    #
+    # @param piece [Chess::Piece]
+    # @param unicode [String]
+    # @param bg_color_name [Symbol]
+    # @return [String]
+    def piece_string(piece, unicode, bg_color_name)
+      if piece.color == 'white'
+        bg_color(" #{color(unicode, :white)}", bg_color_name) + bg_color(' ', bg_color_name)
+      else
+        bg_color(" #{color(unicode, :black)}", bg_color_name) + bg_color(' ', bg_color_name)
       end
     end
   end
