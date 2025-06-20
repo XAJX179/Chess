@@ -139,5 +139,10 @@ module Chess
         Chess::Pieces::Pawn.new(color)
       end
     end
+
+    def piece_at(file, rank)
+      shift_rank = 1
+      @data[file][rank - shift_rank]
+    end
   end
 end
