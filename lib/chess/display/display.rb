@@ -94,13 +94,14 @@ module Chess
     # @param board_data [Hash]
     # @return [void]
     def print_board_data(board_data)
+      shift_rank = 1
       (0..7).reverse_each do |rank|
-        print rank + 1
+        print rank + shift_rank
         ('a'..'h').each do |file|
-          bg_color_name = square_bg_color_name(file, rank)
+          bg_color_name = square_bg_color_name(file, rank + shift_rank)
           print_piece(board_data, file, rank, bg_color_name)
         end
-        print rank + 1
+        print rank + shift_rank
         puts
       end
     end
