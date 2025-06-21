@@ -5,6 +5,7 @@
 ![last-commit](https://img.shields.io/github/last-commit/XAJX179/Chess?logo=git&label=Last%20Commit)
 [![Documentation](https://github.com/XAJX179/Chess/actions/workflows/documentation.yml/badge.svg)](https://github.com/XAJX179/Chess/actions/workflows/documentation.yml)
 [![Ruby Test](https://github.com/XAJX179/Chess/actions/workflows/tests.yml/badge.svg)](https://github.com/XAJX179/Chess/actions/workflows/tests.yml)
+[![Rubocop](https://github.com/XAJX179/Chess/actions/workflows/rubocop.yml/badge.svg)](https://github.com/XAJX179/Chess/actions/workflows/rubocop.yml)
 
 > [!IMPORTANT]
 > **This project is In-Progress**
