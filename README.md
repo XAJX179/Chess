@@ -1,6 +1,8 @@
 # Chess
 
-![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/xajx179/Chess?label=version)
+<!-- uses shields.io for tags and simpleicons.org for icons -->
+[![Version](https://img.shields.io/github/v/tag/xajx179/Chess?label=version&logo=lichess)](https://github.com/XAJX179/Chess/tags)
+![last-commit](https://img.shields.io/github/last-commit/XAJX179/Chess?logo=git&label=Last%20Commit)
 [![Documentation](https://github.com/XAJX179/Chess/actions/workflows/documentation.yml/badge.svg)](https://github.com/XAJX179/Chess/actions/workflows/documentation.yml)
 [![Ruby Test](https://github.com/XAJX179/Chess/actions/workflows/tests.yml/badge.svg)](https://github.com/XAJX179/Chess/actions/workflows/tests.yml)
 
@@ -22,4 +24,5 @@ gameplay, and more.
 [Documentation](https://xajx179.github.io/Chess/)
 
 ## 🫣 Peek
+
 soon...
