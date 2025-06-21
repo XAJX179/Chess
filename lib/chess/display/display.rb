@@ -123,7 +123,7 @@ module Chess
     # @param rank [Integer]
     # @param bg_color_name [Symbol]
     # @return [void]
-    def print_piece(board_data, file, rank, bg_color_name) # rubocop:disable Metrics/MethodLength
+    def print_piece(board_data, file, rank, bg_color_name) # rubocop:disable Metrics/MethodLength,Metrics/AbcSize
       piece = board_data[file][rank]
       case piece
       when Pieces::Rook

@@ -4,7 +4,7 @@
 module Save
   # Serializer for saving to file and reading from file.
   module Serializer
-    @@serializer = JSON
+    SERIALIZER = JSON
 
     # serializes with name as key and code as value for a hash
     #
@@ -12,7 +12,7 @@ module Save
     def serialize(name, code)
       hash = {}
       hash[name] = code
-      @@serializer.dump hash
+      SERIALIZER.dump hash
     end
 
     # unserializes the given string and returns the Hash
@@ -20,7 +20,7 @@ module Save
     #
     # @return [Hash]
     def unserialize(string)
-      @@serializer.parse string
+      SERIALIZER.parse string
     end
   end
 end
