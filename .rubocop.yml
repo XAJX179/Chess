@@ -1,0 +1,6 @@
+AllCops:
+  NewCops: enable
+
+plugins:
+  - rubocop-rspec
+  - rubocop-performance
