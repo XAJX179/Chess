@@ -24,8 +24,6 @@ gem 'tty-cursor', '~> 0.7.1'
 
 gem 'tty-font', '~> 0.5.0'
 
-gem 'pastel', '~> 0.8.0'
-
 gem 'bump', '~> 0.10.0'
 
 gem 'forwardable', '~> 1.3'
