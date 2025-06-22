@@ -4,6 +4,7 @@
 module Save
   # Serializer for saving to file and reading from file.
   module Serializer
+    # Serializing format used for save and load
     SERIALIZER = JSON
 
     # serializes with name as key and code as value for a hash

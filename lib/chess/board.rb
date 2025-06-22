@@ -140,6 +140,10 @@ module Chess
       end
     end
 
+    # returns piece at the given position
+    # @param file [String]
+    # @param rank [Integer]
+    # @return any subclass of {Chess::Pieces::Piece}
     def piece_at(file, rank)
       shift_rank = 1
       @data[file][rank - shift_rank]

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
 module Chess
-  VERSION = '0.11.5'
+  # VERSION following https://semver.org
+  VERSION = '0.11.6'
 end
