@@ -6,6 +6,7 @@
 require 'tty/prompt'
 require 'json'
 require_relative 'chess/display/display'
+require_relative 'chess/mouse/mouse_input'
 require_relative 'chess/save/serializer'
 require_relative 'chess/save/save'
 require_relative 'chess/pieces'
