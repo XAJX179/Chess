@@ -84,7 +84,8 @@ module Chess
 
     # insert a piece on given board
     def insert_piece(board, index, ranks_array_index, letter)
-      board[(96 + index).chr][ranks_array_index] = create_piece(letter)
+      shift_ord = 96
+      board[(shift_ord + index).chr][ranks_array_index] = create_piece(letter)
     end
 
     # create piece from the letter
