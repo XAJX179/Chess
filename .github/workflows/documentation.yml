@@ -23,8 +23,16 @@ jobs:
 
       - name: install gems
         run: bundle install
+      - name: install Graphviz
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y graphviz
       - name: generate docs
-        run: bundle exec yard doc --private
+        run: bundle exec yard doc --private --asset docs/images:images - docs/Diagram.md
+      - name: yard graph
+        run: bundle exec yard graph --full --private --dependencies | circo -T png -o docs/images/diagram.png
+      - name: generate docs again
+        run: bundle exec yard doc --private --asset docs/images:images - docs/Diagram.md
 
       - name: upload static files as artifact
         id: deployment
