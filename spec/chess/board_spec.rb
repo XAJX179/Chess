@@ -34,4 +34,18 @@ describe Chess::Board do
       end
     end
   end
+
+  describe '#piece_at' do
+    context 'when called on pos of board with piece' do
+      it 'returns piece' do
+        expect(board.piece_at('d', 1)).to be_instance_of(Chess::Pieces::Queen)
+      end
+    end
+
+    context 'when called on empty pos of board' do
+      it 'returns empty string' do
+        expect(board.piece_at('d', 4)).to be('')
+      end
+    end
+  end
 end
