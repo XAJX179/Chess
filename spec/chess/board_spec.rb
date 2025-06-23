@@ -3,7 +3,7 @@
 describe Chess::Board do
   subject(:board) { described_class.new('rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1') }
 
-  describe '#initialize' do
+  describe '#generate_data' do
     context 'when called' do
       it 'creates pieces' do
         expect(board.piece_at('a', 1)).to be_instance_of(Chess::Pieces::Rook)
