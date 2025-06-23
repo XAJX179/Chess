@@ -62,7 +62,7 @@ def create_players
   [white_player, black_player]
 end
 
-def run_loop(game, board, players)
+def run_loop(game, _board, _players)
   # pp game
   # puts board.data
   # pp players

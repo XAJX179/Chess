@@ -5,7 +5,9 @@
 # Game itself for example
 require 'tty/prompt'
 require 'json'
-require_relative 'chess/display/display'
+require_relative 'chess/display/color'
+require_relative 'chess/display/prompt'
+require_relative 'chess/display/board'
 require_relative 'chess/mouse/mouse_input'
 require_relative 'chess/save/serializer'
 require_relative 'chess/save/save'
