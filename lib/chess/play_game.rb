@@ -50,14 +50,6 @@ def load_game_with_code(game, fen_code)
   board = Chess::Board.new(fen_code)
   system 'clear'
   game.display_board(board.data)
-  # players = create_players
+  game.display_buttons
   game.start_mouse_input
-end
-
-# create players for the game
-# @return [Array(Chess::Player,Chess::Player)] white_player at 0 and black_player at 1
-def create_players
-  white_player = Chess::Player.new
-  black_player = Chess::Player.new
-  [white_player, black_player]
 end

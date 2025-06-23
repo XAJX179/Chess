@@ -5,7 +5,9 @@ module Chess
   # Mouse
   module Mouse
     # returns the position of board where mouse clicked on console display
-    # @param coord [Array(x,y)]
+    # @example x and y are decomposed from array
+    #   clicked_element([3,2],file_coords,rank_coords)
+    #
     # @param file_coords [Hash]
     # @param rank_coords [Hash]
     # @return [Array(file,rank)]
@@ -39,6 +41,21 @@ module Chess
         rank -= 1
       end
       rank_coords
+    end
+
+    # checks if a button was touched
+    # @return [Boolean]
+    def buttons_touched?((coord_x, coord_y))
+      y = 11
+      return false if coord_y != y
+
+      start_x = 5
+      end_x = 15
+      save_and_exit = Array(start_x..end_x)
+      start_x = 19
+      end_x = 22
+      exit = Array(start_x..end_x)
+      (save_and_exit + exit).include?(coord_x)
     end
   end
 end

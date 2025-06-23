@@ -10,6 +10,7 @@ module Chess
       system('stty -icanon -echo') # Disable canonical mode and echo in terminal
       enable_mouse_tracking
       begin
+        puts 'Waiting for mouse click... Press Ctrl+C to quit.'
         input_loop
       ensure # run these even if Ctrl+C was pressed
         disable_mouse_tracking
@@ -36,7 +37,6 @@ module Chess
 
     # runs loop for mouse input
     def input_loop
-      puts 'Waiting for mouse press... Press Ctrl+C to quit.'
       file_coords = generate_file_coords
       rank_coords = generate_rank_coords
       loop do
@@ -44,7 +44,9 @@ module Chess
         next unless char == "\e"
 
         coord = read_input(char)
-        clicked_element(coord, file_coords, rank_coords)
+        board_pos = clicked_element(coord, file_coords, rank_coords)
+        clicked = read_clicked(board_pos, coord)
+        select_click_action(clicked, board_pos, coord)
       end
     end
 
@@ -55,6 +57,20 @@ module Chess
       shift = 32
       sequence = char + $stdin.read(5) # Read the full ESC [ M SPACE Cx Cy stored in buffer
       sequence.bytes[4..].map { |e| e - shift } # shift and return the Cx Cy only
+    end
+
+    # read what was clicked
+    # @example file and rank are decomposed from array
+    #   read_clicked([file,rank],coord)
+    # @param coord
+    def read_clicked((file, rank), coord)
+      if !(file.nil? || rank.nil?)
+        pp 'board'
+      elsif buttons_touched?(coord)
+        pp 'button'
+      else
+        pp 'outside'
+      end
     end
   end
 end

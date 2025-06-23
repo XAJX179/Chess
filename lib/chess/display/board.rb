@@ -95,5 +95,15 @@ module Chess
         bg_color(" #{color(unicode, :black)}", bg_color_name) + bg_color(' ', bg_color_name)
       end
     end
+
+    # display Save & Exit and Exit buttons
+    # return [void]
+    def display_buttons
+      print '    '
+      print bg_color(color('Save & Exit', :green), :black)
+      print '   '
+      print bg_color(color('Exit', :green), :black)
+      puts
+    end
   end
 end
