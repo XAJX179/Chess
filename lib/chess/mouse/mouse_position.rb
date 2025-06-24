@@ -57,5 +57,17 @@ module Chess
       exit = Array(start_x..end_x)
       (save_and_exit + exit).include?(coord_x)
     end
+
+    # returns which button was clicked
+    # @example x and y are decomposed from array
+    #   button_type([x,y])
+    # @return [String]
+    def button_type((x, _y))
+      if x.between?(5, 15)
+        'save&exit'
+      else
+        'exit'
+      end
+    end
   end
 end

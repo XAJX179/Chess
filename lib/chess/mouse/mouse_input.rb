@@ -62,14 +62,16 @@ module Chess
     # read what was clicked
     # @example file and rank are decomposed from array
     #   read_clicked([file,rank],coord)
-    # @param coord
+    #
+    # @param coord [Array]
+    # @return [String]
     def read_clicked((file, rank), coord)
       if !(file.nil? || rank.nil?)
-        pp 'board'
+        'board'
       elsif buttons_touched?(coord)
-        pp 'button'
+        'button'
       else
-        pp 'outside'
+        'outside'
       end
     end
   end
