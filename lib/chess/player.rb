@@ -16,12 +16,15 @@ module Chess
     # @param board_pos [Array]
     def select_move(board, board_pos)
       # TODO: implement select_move
-      valid_moves = @selected_piece.valid_moves(board, @selected_piece_pos)
-      if valid_moves.include?(board_pos)
-        pp 'valid move'
-      else
-        pp 'invalid move'
-      end
+      possible_moves = @selected_piece.possible_moves(board, @selected_piece_pos)
+      # valid_moves = @selected_piece.valid_moves(board, possible_moves, @selected_piece_pos)
+      # if valid_moves.include?(board_pos)
+      #   pp 'valid move'
+      # else
+      #   pp 'invalid move'
+      # end
+      pp board_pos
+      pp possible_moves
     end
   end
 end
