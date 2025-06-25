@@ -19,6 +19,8 @@ module Chess
     #   }
     # @return [Hash]
     attr_reader :data
+    attr_accessor :current_player, :castling_rights, :possible_en_passant_target,
+                  :half_move, :full_move
 
     # Returns a new instance of Board.
     # @param fen_code [String]
@@ -32,11 +34,11 @@ module Chess
     def generate_data(fen_code)
       fen_parts_array = fen_code.split
       board_data = fen_parts_array[0]
-      fen_parts_array[1]
-      fen_parts_array[2]
-      fen_parts_array[3]
-      fen_parts_array[4]
-      fen_parts_array[5]
+      @current_player = fen_parts_array[1]
+      @castling_rights = fen_parts_array[2]
+      @possible_en_passant_target = fen_parts_array[3]
+      @half_move = fen_parts_array[4]
+      @full_move = fen_parts_array[5]
       create_board(board_data)
     end
 

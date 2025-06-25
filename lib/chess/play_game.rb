@@ -51,5 +51,5 @@ def load_game_with_code(game, fen_code)
   system 'clear'
   game.display_board(board.data)
   game.display_buttons
-  game.start_mouse_input
+  game.start_mouse_input(board)
 end

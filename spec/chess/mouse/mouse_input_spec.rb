@@ -15,19 +15,21 @@ describe 'Mouse' do
   end
 
   describe '#read_clicked' do
-    it 'reads board click' do
-      coord = [3, 2]
-      expect(game.read_clicked(['a', 8], coord)).to eq('board')
-    end
+    context 'when called' do
+      it 'reads board click' do
+        coord = [3, 2]
+        expect(game.read_clicked(['a', 8], coord)).to eq('board')
+      end
 
-    it 'reads outside click' do
-      coord = [3, 22]
-      expect(game.read_clicked(['a', nil], coord)).to eq('outside')
-    end
+      it 'reads outside click' do
+        coord = [3, 22]
+        expect(game.read_clicked(['a', nil], coord)).to eq('outside')
+      end
 
-    it 'reads button click' do
-      coord = [15, 11]
-      expect(game.read_clicked(['5', nil], coord)).to eq('button')
+      it 'reads button click' do
+        coord = [15, 11]
+        expect(game.read_clicked(['5', nil], coord)).to eq('button')
+      end
     end
   end
 end

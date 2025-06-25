@@ -5,13 +5,14 @@ module Chess
   # Mouse
   module Mouse
     # starts listening mouse input in console
-    def start_mouse_input
+    # @param board [Chess::Board]
+    def start_mouse_input(board)
       warn_tmux_users if ENV['TMUX']
       system('stty -icanon -echo') # Disable canonical mode and echo in terminal
       enable_mouse_tracking
       begin
         puts 'Waiting for mouse click... Press Ctrl+C to quit.'
-        input_loop
+        input_loop(board)
       ensure # run these even if Ctrl+C was pressed
         disable_mouse_tracking
         system('stty icanon echo') # Restore terminal to sane mode
@@ -36,7 +37,8 @@ module Chess
     end
 
     # runs loop for mouse input
-    def input_loop
+    # @param board [Chess::Board]
+    def input_loop(board)
       file_coords = generate_file_coords
       rank_coords = generate_rank_coords
       loop do
@@ -46,7 +48,7 @@ module Chess
         coord = read_input(char)
         board_pos = clicked_element(coord, file_coords, rank_coords)
         clicked = read_clicked(board_pos, coord)
-        select_click_action(clicked, board_pos, coord)
+        select_click_action(board, clicked, board_pos, coord)
       end
     end
 

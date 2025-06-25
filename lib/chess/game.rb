@@ -14,20 +14,33 @@ module Chess
     end
 
     # select different actions based on what was clicked
-    def select_click_action(clicked, board_pos, mouse_coord)
+    # @param board [Chess::Board]
+    # @param clicked [String]
+    # @param board_pos [Array]
+    # @param mouse_coord [Array]
+    # return [void]
+    def select_click_action(board, clicked, board_pos, mouse_coord)
       # TODO: implement different actions
-      return nil if clicked == 'outside'
+      return if clicked == 'outside'
 
       if clicked == 'board'
-        board_action(board_pos)
+        board_action(board, board_pos)
       else
         button_action(mouse_coord)
       end
     end
 
     # actions for clicks on board
+    # @param board [Chess:Board]
     # @param board_pos [Array]
-    def board_action(board_pos); end
+    def board_action(board, board_pos)
+      if board.current_player == 'w'
+        player_turn(@white_player, board, board_pos)
+      else
+        player_turn(@black_player, board, board_pos)
+      end
+      # TODO: redraw display here
+    end
 
     # actions for clicks on buttons
     # @param mouse_coord [Array]
@@ -38,6 +51,21 @@ module Chess
       else
         exit
       end
+    end
+
+    # player turn to select move
+    # @param player [Chess::Player]
+    # @param board [Chess::Board]
+    # @param board_pos [Array]
+    def player_turn(player, board, board_pos)
+      if player.selected_piece == ''
+        player.selected_piece = board.piece_at(*board_pos)
+        player.selected_piece_pos = board_pos
+        return
+      end
+
+      player.select_move(board, board_pos)
+      player.selected_piece = ''
     end
 
     def exit

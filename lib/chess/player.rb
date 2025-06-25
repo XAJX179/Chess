@@ -4,8 +4,24 @@
 module Chess
   # Player
   class Player
-    def test
-      puts 'hello world'
+    attr_accessor :selected_piece, :selected_piece_pos
+
+    def initialize
+      @selected_piece = ''
+      @selected_piece_pos = ''
+    end
+
+    # select a move
+    # @param board [Chess::Board]
+    # @param board_pos [Array]
+    def select_move(board, board_pos)
+      # TODO: implement select_move
+      valid_moves = @selected_piece.valid_moves(board, @selected_piece_pos)
+      if valid_moves.include?(board_pos)
+        pp 'valid move'
+      else
+        pp 'invalid move'
+      end
     end
   end
 end
