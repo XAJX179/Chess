@@ -15,6 +15,16 @@ module Chess
       def test
         puts 'hello world'
       end
+
+      # checks if piece color is black
+      def black?
+        @color == 'black'
+      end
+
+      # checks if piece color is white
+      def white?
+        @color == 'white'
+      end
     end
   end
 end

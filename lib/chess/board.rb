@@ -151,5 +151,13 @@ module Chess
       shift_rank = 1
       @data[file][rank - shift_rank]
     end
+
+    # checks if a square is empty
+    # @param file [String]
+    # @param rank [Integer]
+    # @return [Boolean]
+    def empty_at?(file, rank)
+      piece_at(file, rank) == ''
+    end
   end
 end

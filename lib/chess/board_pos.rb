@@ -45,6 +45,7 @@ module Chess
       [(file.ord + 1).chr, rank - 1]
     end
 
+    # checks if a pos is nil value
     def pos_nil?((file, rank))
       piece_at(file, rank).nil?
     end
