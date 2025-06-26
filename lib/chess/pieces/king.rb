@@ -6,9 +6,6 @@ module Chess
   module Pieces
     # King
     class King < Piece
-      def test
-        puts 'hello world'
-      end
     end
   end
 end

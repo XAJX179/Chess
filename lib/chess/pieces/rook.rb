@@ -6,9 +6,6 @@ module Chess
   module Pieces
     # Rook
     class Rook < Piece
-      def test
-        puts 'hello world'
-      end
     end
   end
 end

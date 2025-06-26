@@ -68,11 +68,13 @@ module Chess
       player.selected_piece = ''
     end
 
+    # exits the game.
     def exit
       pp 'exit'
       # TODO: implement exit
     end
 
+    # save and exit the game.
     def save_and_exit
       pp 'save_and_exit'
       # TODO: implement save and exit

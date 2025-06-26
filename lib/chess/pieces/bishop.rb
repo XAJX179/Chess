@@ -6,9 +6,6 @@ module Chess
   module Pieces
     # Bishop
     class Bishop < Piece
-      def test
-        puts 'hello world'
-      end
     end
   end
 end

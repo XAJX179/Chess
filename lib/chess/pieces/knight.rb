@@ -6,9 +6,6 @@ module Chess
   module Pieces
     # Knight
     class Knight < Piece
-      def test
-        puts 'hello world'
-      end
     end
   end
 end
