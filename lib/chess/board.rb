@@ -149,6 +149,8 @@ module Chess
     # @return any subclass of {Chess::Pieces::Piece}
     def piece_at(file, rank)
       shift_rank = 1
+      return if @data[file].nil?
+
       @data[file][rank - shift_rank]
     end
 

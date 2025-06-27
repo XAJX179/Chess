@@ -38,8 +38,10 @@ module Chess
       def first_moves(board, file, rank)
         moves = []
         moves += one_step_forward(board, file, rank)
-        moves + two_step_forward(board, file, rank)
-        # moves + cross_side_attack(board, file, rank)
+        moves += two_step_forward(board, file, rank)
+        moves += cross_side_attack(board, file, rank)
+        moves.reject!(&:empty?)
+        moves
       end
 
       # one step move of pawn
@@ -72,26 +74,25 @@ module Chess
                  else
                    south_two_step(board, file, rank)
                  end
+        moves
       end
 
       def north_two_step(board, file, rank)
-        moves = []
         north_one_step = board.north_pos(file, rank)
         north_two_step = board.north_pos(*north_one_step)
-        return unless board.empty_at?(*north_one_step) && board.empty_at?(*north_two_step)
+        return moves unless board.empty_at?(*north_one_step) && board.empty_at?(*north_two_step)
 
         set_en_passant_target(board, file, rank)
-        moves << north_two_step
+        north_two_step
       end
 
       def south_two_step(board, file, rank)
-        moves = []
         south_one_step = board.south_pos(file, rank)
         south_two_step = board.south_pos(*south_one_step)
-        return unless board.empty_at?(*south_one_step) && board.empty_at?(*south_two_step)
+        return moves unless board.empty_at?(*south_one_step) && board.empty_at?(*south_two_step)
 
         set_en_passant_target(board, file, rank)
-        moves << south_two_step
+        south_two_step
       end
 
       def set_en_passant_target(board, file, rank)
@@ -103,8 +104,40 @@ module Chess
       # @param file [String]
       # @param rank [Integer]
       # @return [Array] moves
-      def cross_side_attack(_board, _file, _rank)
-        []
+      def cross_side_attack(board, file, rank)
+        moves = []
+        moves += if white?
+                   north_attack(board, file, rank)
+                 else
+                   south_attack(board, file, rank)
+                 end
+        moves
+      end
+
+      def north_attack(board, file, rank)
+        moves = []
+        north_east = board.north_east_pos(file, rank)
+        if !(board.empty_at?(*north_east) || board.pos_nil?(north_east)) && board.piece_at(*north_east).black?
+          moves << north_east
+        end
+        north_west = board.north_west_pos(file, rank)
+        if !(board.empty_at?(*north_west) || board.pos_nil?(north_west)) && board.piece_at(*north_west).black?
+          moves << north_west
+        end
+        moves
+      end
+
+      def south_attack(board, file, rank)
+        moves = []
+        south_east = board.south_east_pos(file, rank)
+        if !(board.empty_at?(*south_east) || board.pos_nil?(south_east)) && board.piece_at(*south_east).white?
+          moves << south_east
+        end
+        south_west = board.south_west_pos(file, rank)
+        if !(board.empty_at?(*south_west) || board.pos_nil?(south_west)) && board.piece_at(*south_west).white?
+          moves << south_west
+        end
+        moves
       end
     end
   end
