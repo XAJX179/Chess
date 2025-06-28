@@ -13,13 +13,11 @@ module Chess
       # @return [Array] moves
       def possible_moves(board, (file, rank))
         moves = []
-        if first_move?(rank)
-          pp 'first_move'
-          moves += first_moves(board, file, rank)
-        else
-          pp 'not first move'
-          moves += other_moves
-        end
+        moves += if first_move?(rank)
+                   first_moves(board, file, rank)
+                 else
+                   other_moves(board, file, rank)
+                 end
         moves
       end
 
@@ -39,6 +37,14 @@ module Chess
         moves = []
         moves += one_step_forward(board, file, rank)
         moves += two_step_forward(board, file, rank)
+        moves += cross_side_attack(board, file, rank)
+        moves.reject!(&:empty?)
+        moves
+      end
+
+      def other_moves(board, file, rank)
+        moves = []
+        moves += one_step_forward(board, file, rank)
         moves += cross_side_attack(board, file, rank)
         moves.reject!(&:empty?)
         moves
@@ -80,7 +86,7 @@ module Chess
       def north_two_step(board, file, rank)
         north_one_step = board.north_pos(file, rank)
         north_two_step = board.north_pos(*north_one_step)
-        return moves unless board.empty_at?(*north_one_step) && board.empty_at?(*north_two_step)
+        return [] unless board.empty_at?(*north_one_step) && board.empty_at?(*north_two_step)
 
         set_en_passant_target(board, file, rank)
         north_two_step
@@ -89,7 +95,7 @@ module Chess
       def south_two_step(board, file, rank)
         south_one_step = board.south_pos(file, rank)
         south_two_step = board.south_pos(*south_one_step)
-        return moves unless board.empty_at?(*south_one_step) && board.empty_at?(*south_two_step)
+        return [] unless board.empty_at?(*south_one_step) && board.empty_at?(*south_two_step)
 
         set_en_passant_target(board, file, rank)
         south_two_step

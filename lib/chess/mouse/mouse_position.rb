@@ -12,7 +12,7 @@ module Chess
     # @param rank_coords [Hash]
     # @return [Array(file,rank)]
     def clicked_element((x, y), file_coords, rank_coords)
-      pp [file_coords[x], rank_coords[y]]
+      [file_coords[x], rank_coords[y]]
     end
 
     # generate file coords for the display

@@ -6,7 +6,6 @@ module Chess
   class Board
     # the north pos from the given pos
     def north_pos(file, rank)
-      pp 'north_pos'
       [file, rank + 1]
     end
 
