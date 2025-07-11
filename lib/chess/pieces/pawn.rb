@@ -6,6 +6,11 @@ module Chess
   module Pieces
     # Pawn
     class Pawn < Piece
+      def valid_moves(board, (file, rank))
+        # TODO: implement valid_moves out of possible_moves
+        possible_moves(board, [file, rank])
+      end
+
       # possible_moves of the pawn
       # @example x and y are decomposed from array
       #   possible_moves(board,['a',2])

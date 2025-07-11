@@ -20,7 +20,6 @@ module Chess
     # @param mouse_coord [Array]
     # return [void]
     def select_click_action(board, clicked, board_pos, mouse_coord)
-      # TODO: implement different actions
       return if clicked == 'outside'
 
       if clicked == 'board'
@@ -34,12 +33,13 @@ module Chess
     # @param board [Chess:Board]
     # @param board_pos [Array]
     def board_action(board, board_pos)
-      if board.current_player == 'w'
-        player_turn(@white_player, board, board_pos)
-      else
-        player_turn(@black_player, board, board_pos)
-      end
-      # TODO: redraw display here
+      player = if board.current_player == 'w'
+                 @white_player
+               else
+                 @black_player
+               end
+      valid_moves = player_turn(player, board, board_pos)
+      redraw_display(board.data, valid_moves)
     end
 
     # actions for clicks on buttons
@@ -60,12 +60,14 @@ module Chess
     def player_turn(player, board, board_pos)
       if player.selected_piece == ''
         player.selected_piece = board.piece_at(*board_pos)
+        valid_moves = player.selected_piece.valid_moves(board, board_pos) unless player.selected_piece == ''
         player.selected_piece_pos = board_pos
-        return
+        valid_moves || []
+      else
+        player.select_move(board, board_pos)
+        player.selected_piece = ''
+        []
       end
-
-      player.select_move(board, board_pos)
-      player.selected_piece = ''
     end
 
     # exits the game.

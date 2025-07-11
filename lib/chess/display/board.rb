@@ -7,10 +7,10 @@ module Chess
     # displays board with ASCII characters
     # @param board_data [Hash]
     # @return [void]
-    def display_board(board_data)
+    def display_board(board_data, valid_moves = [])
       # TODO: implement marks for valid moves.
       print_files(board_data)
-      print_board_data(board_data)
+      print_board_data(board_data, valid_moves)
       print_files(board_data)
     end
 
@@ -18,13 +18,13 @@ module Chess
     #
     # @param board_data [Hash]
     # @return [void]
-    def print_board_data(board_data)
+    def print_board_data(board_data, valid_moves)
       shift_rank = 1
       (0..7).reverse_each do |rank|
         print rank + shift_rank
         ('a'..'h').each do |file|
           bg_color_name = square_bg_color_name(file, rank + shift_rank)
-          print_piece(board_data, file, rank, bg_color_name)
+          print_square(board_data, file, rank, bg_color_name, valid_moves)
         end
         print rank + shift_rank
         puts
@@ -41,30 +41,38 @@ module Chess
       puts
     end
 
-    # prints a single piece
+    # prints a single square
     #
     # @param board_data [Hash]
     # @param file [String]
     # @param rank [Integer]
     # @param bg_color_name [Symbol]
     # @return [void]
-    def print_piece(board_data, file, rank, bg_color_name) # rubocop:disable Metrics/MethodLength,Metrics/AbcSize
+    def print_square(board_data, file, rank, bg_color_name, valid_moves)
       piece = board_data[file][rank]
+      shift_rank = 1
+      square_pos = [file, rank + shift_rank]
+      if piece == ''
+        print square_string(piece, ' ', bg_color_name, square_pos, valid_moves)
+      else
+        print_piece_square(piece, bg_color_name, square_pos, valid_moves)
+      end
+    end
+
+    def print_piece_square(piece, bg_color_name, square_pos, valid_moves) # rubocop:disable Metrics/MethodLength
       case piece
       when Pieces::Rook
-        print piece_string(piece, "\u{1fa02}", bg_color_name)
+        print square_string(piece, "\u{1fa02}", bg_color_name, square_pos, valid_moves)
       when Pieces::Knight
-        print piece_string(piece, "\u{1fa04}", bg_color_name)
+        print square_string(piece, "\u{1fa04}", bg_color_name, square_pos, valid_moves)
       when Pieces::Bishop
-        print piece_string(piece, "\u{1fa03}", bg_color_name)
+        print square_string(piece, "\u{1fa03}", bg_color_name, square_pos, valid_moves)
       when Pieces::Queen
-        print piece_string(piece, "\u{1fa01}", bg_color_name)
+        print square_string(piece, "\u{1fa01}", bg_color_name, square_pos, valid_moves)
       when Pieces::King
-        print piece_string(piece, "\u{1fa00}", bg_color_name)
+        print square_string(piece, "\u{1fa00}", bg_color_name, square_pos, valid_moves)
       when Pieces::Pawn
-        print piece_string(piece, "\u{1fa05}", bg_color_name)
-      else
-        print bg_color('   ', bg_color_name)
+        print square_string(piece, "\u{1fa05}", bg_color_name, square_pos, valid_moves)
       end
     end
 
@@ -82,17 +90,38 @@ module Chess
       end
     end
 
-    # arrange and format strings for the piece
+    # arrange and format strings for the square
     #
     # @param piece [Chess::Piece]
     # @param unicode [String]
     # @param bg_color_name [Symbol]
     # @return [String]
-    def piece_string(piece, unicode, bg_color_name)
-      if piece.color == 'white'
-        bg_color(" #{color(unicode, :white)}", bg_color_name) + bg_color(' ', bg_color_name)
+    def square_string(piece, unicode, bg_color_name, square_pos, valid_moves)
+      if piece == ''
+        bg_color("#{move_dots(square_pos, valid_moves)}  ", bg_color_name)
+      elsif piece.is_a?(Chess::Pieces::King)
+        piece_color = piece.color
+        bg_color("#{move_dots(square_pos, valid_moves)}#{color(unicode, piece_color.to_sym)}#{
+            king_check_dot(piece, square_pos)}", bg_color_name)
       else
-        bg_color(" #{color(unicode, :black)}", bg_color_name) + bg_color(' ', bg_color_name)
+        piece_color = piece.color
+        bg_color("#{move_dots(square_pos, valid_moves)}#{color(unicode, piece_color.to_sym)} ", bg_color_name)
+      end
+    end
+
+    def move_dots(square_pos, valid_moves)
+      if valid_moves.include?(square_pos)
+        color("\u{2022}", :black)
+      else
+        ' '
+      end
+    end
+
+    def king_check_dot(king, king_pos)
+      if king.in_check?(king_pos)
+        color("\u{29BE}", :red)
+      else
+        ' '
       end
     end
 
@@ -104,6 +133,12 @@ module Chess
       print '   '
       print bg_color(color('Exit', :green), :black)
       puts
+    end
+
+    def redraw_display(board_data, valid_moves = [])
+      system 'clear'
+      display_board(board_data, valid_moves)
+      display_buttons
     end
   end
 end

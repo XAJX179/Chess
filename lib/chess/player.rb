@@ -14,7 +14,8 @@ module Chess
     # select a move
     # @param board [Chess::Board]
     # @param board_pos [Array]
-    def select_move(board, _board_pos)
+    def select_move(board, board_pos)
+      pp board_pos
       # TODO: implement select_move
       possible_moves = @selected_piece.possible_moves(board, @selected_piece_pos)
       # valid_moves = @selected_piece.valid_moves(board, possible_moves, @selected_piece_pos)

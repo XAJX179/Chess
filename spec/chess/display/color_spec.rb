@@ -22,7 +22,7 @@ describe 'Display' do
         color_name = :green
         result = game.color('hello world', color_name)
         value = Chess::Display::COLORS[color_name]
-        expect(result).to eq("\e[38;2;#{value}mhello world\e[0m")
+        expect(result).to eq("\e[38;2;#{value}mhello world")
       end
     end
   end

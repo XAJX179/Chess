@@ -9,7 +9,8 @@ module Chess
       green: '119;149;86',
       dull_white: '235;236;208',
       white: '255;187;143',
-      black: '1;1;1'
+      black: '1;1;1',
+      red: '249;23;32'
     }.freeze
 
     # background color the string
@@ -27,9 +28,11 @@ module Chess
     # @param string [String]
     # @param name [Symbol]
     # @return [String]
+    #
+    # @note will not reset the color like #bg_color
     def color(string, name)
       value = COLORS[name]
-      "\e[38;2;#{value}m#{string}\e[0m"
+      "\e[38;2;#{value}m#{string}"
     end
   end
 end
