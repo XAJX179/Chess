@@ -59,15 +59,30 @@ module Chess
     # @param board_pos [Array]
     def player_turn(player, board, board_pos)
       if player.selected_piece == ''
-        player.selected_piece = board.piece_at(*board_pos)
-        valid_moves = player.selected_piece.valid_moves(board, board_pos) unless player.selected_piece == ''
-        player.selected_piece_pos = board_pos
-        valid_moves || []
+        select_piece(player, board, board_pos)
       else
-        player.select_move(board, board_pos)
-        player.selected_piece = ''
-        []
+        make_move(player, board, board_pos)
       end
+    end
+
+    def select_piece(player, board, board_pos)
+      piece = board.piece_at(*board_pos)
+      player.selected_piece = piece if same_color?(board.current_player, piece)
+      unless player.selected_piece == ''
+        valid_moves = piece.valid_moves(board, board_pos)
+        player.selected_piece_pos = board_pos
+      end
+      valid_moves || []
+    end
+
+    def make_move(player, board, board_pos)
+      player.select_move(board, board_pos)
+      player.selected_piece = ''
+      []
+    end
+
+    def same_color?(current_player, piece)
+      piece.color.chr == current_player unless piece == ''
     end
 
     # exits the game.
