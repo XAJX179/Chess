@@ -5,6 +5,7 @@ module Chess
   # Board
   class Board
     include BoardFromFenCode
+    include BoardPos
     # 'a’ to ‘h’ are files, rnbqkp are black pieces
     # and RNBQKP are white pieces along the 8 ranks.
     # @example generated data looks like this
