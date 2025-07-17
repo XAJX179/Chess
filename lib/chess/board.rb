@@ -48,5 +48,15 @@ module Chess
     def empty_at?(file, rank)
       piece_at(file, rank) == ''
     end
+
+    def remove_piece_at((file, rank))
+      shift_rank = 1
+      @data[file][rank - shift_rank] = ''
+    end
+
+    def insert_piece_at(piece, (file, rank))
+      shift_rank = 1
+      @data[file][rank - shift_rank] = piece
+    end
   end
 end
