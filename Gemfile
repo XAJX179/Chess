@@ -16,14 +16,8 @@ gem 'yard', '~> 0.9.37'
 
 gem 'tty-prompt', '~> 0.23.1'
 
-gem 'tty-box', '~> 0.7.0'
-
-gem 'tty-screen', '~> 0.8.2'
-
-gem 'tty-cursor', '~> 0.7.1'
-
-gem 'tty-font', '~> 0.5.0'
-
 gem 'bump', '~> 0.10.0'
 
 gem 'forwardable', '~> 1.3'
+
+gem "rake", "~> 13.3"
