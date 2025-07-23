@@ -2,5 +2,5 @@
 
 module Chess
   # VERSION following https://semver.org
-  VERSION = '0.23.3'
+  VERSION = '0.23.4'
 end

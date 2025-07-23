@@ -7,9 +7,12 @@ module Chess
     # Piece
     class Piece
       attr_reader :color
+      attr_accessor :pos, :valid_moves
 
       def initialize(color)
         @color = color
+        @pos = []
+        @valid_moves = []
       end
 
       def test

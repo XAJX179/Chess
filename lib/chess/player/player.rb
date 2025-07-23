@@ -6,11 +6,10 @@ module Chess
   class Player
     include PlayMovesByType
 
-    attr_accessor :selected_piece, :selected_piece_pos
+    attr_accessor :selected_piece
 
     def initialize
       @selected_piece = ''
-      @selected_piece_pos = ''
     end
 
     # select a move
@@ -19,14 +18,13 @@ module Chess
     def select_move(board, board_pos)
       pp board_pos
       # TODO: implement select_move
-      valid_moves = @selected_piece.valid_moves(board, @selected_piece_pos)
-      if valid_moves.include?(board_pos)
+      if @selected_piece.valid_moves.include?(board_pos)
         pp 'valid move'
         play_move_by_type(board, board_pos)
       else
         pp 'invalid move'
       end
-      puts "selected_piece_pos => #{@selected_piece_pos}"
+      @selected_piece
     end
 
     def change_player_turn(board)

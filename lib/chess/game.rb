@@ -39,6 +39,9 @@ module Chess
                  @black_player
                end
       valid_moves = player_turn(player, board, board_pos)
+      pp board_pos
+      pp player
+      gets
       redraw_display(board.data, valid_moves)
     end
 
@@ -61,37 +64,57 @@ module Chess
       if player.selected_piece == ''
         select_piece(player, board, board_pos)
       else
-        make_move(player, board, board_pos)
+        select_move(player, board, board_pos)
       end
     end
 
     def select_piece(player, board, board_pos)
       piece = board.piece_at(*board_pos)
       player.selected_piece = piece if same_color?(board.current_player, piece)
-      unless player.selected_piece == ''
-        valid_moves = piece.valid_moves(board, board_pos)
-        player.selected_piece_pos = board_pos
+      if player.selected_piece == ''
+        []
+      else
+        player.selected_piece.pos = board_pos
+        player.selected_piece.valid_moves = selected_piece_valid_moves(piece, board, board_pos)
       end
-      valid_moves || []
     end
 
-    def make_move(player, board, board_pos)
+    def select_move(player, board, board_pos)
       player.select_move(board, board_pos)
+      player.selected_piece.valid_moves = []
       player.selected_piece = ''
       []
+    end
+
+    def selected_piece_valid_moves(piece, board, board_pos)
+      # TODO: implement valid_moves out of possible_moves
+      possible_moves = piece.possible_moves(board, board_pos)
+      legal_moves(piece, possible_moves, board, board_pos)
+      possible_moves
+    end
+
+    def legal_moves(_piece, _possible_moves, _board, _board_pos)
+      legal_moves = []
+      pp legal_moves
     end
 
     def same_color?(current_player, piece)
       piece.color.chr == current_player unless piece == ''
     end
 
-    # exits the game.
+    # save the game
+    def save
+      pp 'save'
+      # TODO: implement save
+    end
+
+    # exits the game
     def exit
       pp 'exit'
       # TODO: implement exit
     end
 
-    # save and exit the game.
+    # save and exit the game
     def save_and_exit
       pp 'save_and_exit'
       # TODO: implement save and exit

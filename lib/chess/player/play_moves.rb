@@ -49,7 +49,7 @@ module Chess
     def play_normal_move(board, board_pos)
       board.remove_piece_at(board_pos)
       board.insert_piece_at(@selected_piece, board_pos)
-      board.remove_piece_at(@selected_piece_pos)
+      board.remove_piece_at(@selected_piece.pos)
     end
   end
 end
