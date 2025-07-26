@@ -61,7 +61,8 @@ module Chess
     # @param board [Chess::Board]
     # @param board_pos [Array]
     def player_turn(player, board, board_pos)
-      if player.selected_piece == ''
+      piece = board.piece_at(*board_pos)
+      if player.selected_piece == '' || same_color?(board.current_player, piece)
         select_piece(player, board, board_pos)
       else
         select_move(player, board, board_pos)
