@@ -11,8 +11,10 @@ module Chess
       #   possible_moves(board,['a',2])
       # @param board [Chess::Board]
       # @return [Array] moves
-      def possible_moves(board, (file, rank))
+      def possible_moves(board)
         moves = []
+        file = @pos[0]
+        rank = @pos[1]
         moves += if first_move?(rank)
                    first_moves(board, file, rank)
                  else

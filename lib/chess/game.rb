@@ -76,7 +76,7 @@ module Chess
         []
       else
         player.selected_piece.pos = board_pos
-        player.selected_piece.valid_moves = selected_piece_valid_moves(piece, board, board_pos)
+        player.selected_piece.valid_moves = selected_piece_valid_moves(piece, board)
       end
     end
 
@@ -87,14 +87,14 @@ module Chess
       []
     end
 
-    def selected_piece_valid_moves(piece, board, board_pos)
+    def selected_piece_valid_moves(piece, board)
       # TODO: implement valid_moves out of possible_moves
-      possible_moves = piece.possible_moves(board, board_pos)
-      legal_moves(piece, possible_moves, board, board_pos)
+      possible_moves = piece.possible_moves(board)
+      legal_moves(piece, possible_moves, board)
       possible_moves
     end
 
-    def legal_moves(_piece, _possible_moves, _board, _board_pos)
+    def legal_moves(_piece, _possible_moves, _board)
       legal_moves = []
       pp legal_moves
     end
