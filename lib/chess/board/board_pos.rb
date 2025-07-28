@@ -49,10 +49,12 @@ module Chess
       piece_at(file, rank).nil?
     end
 
-    def pos_rank_in_range?((_file, rank))
-      first = 1
-      last = 8
-      rank.between?(first, last)
+    def pos_in_range?((file, rank))
+      first_rank = 1
+      last_rank = 8
+      first_file_ord = 'a'.ord
+      last_file_ord = 'h'.ord
+      rank.between?(first_rank, last_rank) && file.ord.between?(first_file_ord, last_file_ord)
     end
   end
 end

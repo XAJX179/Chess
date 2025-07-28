@@ -62,7 +62,7 @@ module Chess
           moves << north if board.empty_at?(*north)
         else
           south = board.south_pos(file, rank)
-          moves << south if board.empty_at?(*south) && board.pos_rank_in_range?(south)
+          moves << south if board.empty_at?(*south) && board.pos_in_range?(south)
         end
         moves
       end
@@ -96,7 +96,7 @@ module Chess
         south_one_step = board.south_pos(file, rank)
         south_two_step = board.south_pos(*south_one_step)
         unless board.empty_at?(*south_one_step) && board.empty_at?(*south_two_step) &&
-               board.pos_rank_in_range?(south_one_step) && board.pos_rank_in_range?(south_two_step)
+               board.pos_in_range?(south_one_step) && board.pos_in_range?(south_two_step)
 
           return []
         end
@@ -141,7 +141,7 @@ module Chess
         [south_east, south_west].each do |pos|
           moves << pos if !(board.empty_at?(*pos) || board.pos_nil?(pos)) &&
                           board.piece_at(*pos).white? &&
-                          board.pos_rank_in_range?(pos)
+                          board.pos_in_range?(pos)
         end
         moves
       end
