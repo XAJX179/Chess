@@ -10,6 +10,8 @@ module Chess
       # @param board [Chess::Board]
       # @return [Array] moves
       def possible_moves(board)
+        return [] if board.current_player != @color.chr
+
         moves = []
         file = @pos[0]
         rank = @pos[1]
