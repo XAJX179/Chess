@@ -48,5 +48,11 @@ module Chess
     def pos_nil?((file, rank))
       piece_at(file, rank).nil?
     end
+
+    def pos_rank_in_range?((_file, rank))
+      first = 1
+      last = 8
+      rank.between?(first, last)
+    end
   end
 end

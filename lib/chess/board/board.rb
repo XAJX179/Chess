@@ -58,5 +58,10 @@ module Chess
       shift_rank = 1
       @data[file][rank - shift_rank] = piece
     end
+
+    def enemy_at?(file, rank)
+      piece = piece_at(file, rank)
+      @current_player != piece.color.chr
+    end
   end
 end
