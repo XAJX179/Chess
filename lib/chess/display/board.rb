@@ -62,17 +62,17 @@ module Chess
     def print_piece_square(piece, bg_color_name, square_pos, valid_moves) # rubocop:disable Metrics/MethodLength
       case piece
       when Pieces::Rook
-        print square_string(piece, "\u{1fa02}", bg_color_name, square_pos, valid_moves)
+        print square_string(piece, "\u{265C}", bg_color_name, square_pos, valid_moves)
       when Pieces::Knight
-        print square_string(piece, "\u{1fa04}", bg_color_name, square_pos, valid_moves)
+        print square_string(piece, "\u{265E}", bg_color_name, square_pos, valid_moves)
       when Pieces::Bishop
-        print square_string(piece, "\u{1fa03}", bg_color_name, square_pos, valid_moves)
+        print square_string(piece, "\u{265D}", bg_color_name, square_pos, valid_moves)
       when Pieces::Queen
-        print square_string(piece, "\u{1fa01}", bg_color_name, square_pos, valid_moves)
+        print square_string(piece, "\u{265B}", bg_color_name, square_pos, valid_moves)
       when Pieces::King
-        print square_string(piece, "\u{1fa00}", bg_color_name, square_pos, valid_moves)
+        print square_string(piece, "\u{265A}", bg_color_name, square_pos, valid_moves)
       when Pieces::Pawn
-        print square_string(piece, "\u{1fa05}", bg_color_name, square_pos, valid_moves)
+        print square_string(piece, "\u{265F}", bg_color_name, square_pos, valid_moves)
       end
     end
 
