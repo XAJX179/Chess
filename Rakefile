@@ -7,7 +7,7 @@ end
 
 desc 'running rspec'
 task :tests do
-  sh 'rspec -f p'
+  sh 'rspec -f d'
   puts 'rspec completed.'
 end
 

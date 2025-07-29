@@ -98,7 +98,7 @@ module Chess
     # @return [String]
     def square_string(piece, unicode, bg_color_name, square_pos, valid_moves)
       if piece == ''
-        bg_color("#{move_dots(square_pos, valid_moves)}  ", bg_color_name)
+        bg_color("#{move_dots(square_pos, valid_moves)}\u{00A0}\u{00A0}", bg_color_name)
       elsif piece.is_a?(Chess::Pieces::King)
         piece_color = piece.color
         bg_color("#{move_dots(square_pos, valid_moves)}#{color(unicode, piece_color.to_sym)}#{
@@ -113,7 +113,7 @@ module Chess
       if valid_moves.include?(square_pos)
         color("\u{2022}", :black)
       else
-        ' '
+        "\u00A0"
       end
     end
 
@@ -121,7 +121,7 @@ module Chess
       if king.in_check?(king_pos)
         color("\u{29BE}", :red)
       else
-        ' '
+        "\u00A0"
       end
     end
 
