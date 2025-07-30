@@ -25,6 +25,6 @@ end
 
 desc 'docs graph'
 task graph: %i[docs] do
-  sh 'yard graph --full --private --dependencies | circo -T png -o docs/images/diagram.png'
+  sh 'yard graph --full --private --dependencies | dot -T png -o docs/images/diagram.png'
   puts 'graph generated'
 end
