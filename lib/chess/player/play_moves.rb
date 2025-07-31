@@ -8,14 +8,30 @@ module Chess
     def play_move_by_type(board, board_pos)
       if @selected_piece.is_a? Pieces::King
         pp 'king selected'
+        king_move(board, board_pos)
       elsif @selected_piece.is_a? Pieces::Pawn
         pp 'pawn selected'
         pawn_move(board, board_pos)
       else
-        pp 'others selected'
         play_normal_move(board, board_pos)
       end
       change_player_turn(board)
+    end
+
+    def king_move(board, board_pos)
+      if castling?(board, board_pos)
+        play_castling(board, board_pos)
+      else
+        play_normal_move(board, board_pos)
+      end
+    end
+
+    def castling?(_board, _board_pos)
+      true
+    end
+
+    def play_castling(board, board_pos)
+      play_normal_move(board, board_pos)
     end
 
     def pawn_move(board, board_pos)
