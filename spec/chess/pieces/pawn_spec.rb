@@ -25,7 +25,7 @@ describe Chess::Pieces::Pawn do
 
     # white pieces
 
-    context 'when called on b2 with white current player' do
+    context 'when called on white Pawn at b2 with white current player' do
       it 'returns empty' do
         piece = board.piece_at('b', 2)
         moves = piece.possible_moves(board)
@@ -34,7 +34,7 @@ describe Chess::Pieces::Pawn do
       end
     end
 
-    context 'when called on e4 with white current player' do
+    context 'when called on white Pawn at e4 with white current player' do
       it 'returns empty' do
         piece = board.piece_at('e', 4)
         moves = piece.possible_moves(board)
@@ -43,7 +43,7 @@ describe Chess::Pieces::Pawn do
       end
     end
 
-    context 'when called on c2 with white current player' do
+    context 'when called on white Pawn at c2 with white current player' do
       it 'returns correct moves' do
         piece = board.piece_at('c', 2)
         moves = piece.possible_moves(board)
@@ -52,7 +52,7 @@ describe Chess::Pieces::Pawn do
       end
     end
 
-    context 'when called on f2 with white current player' do
+    context 'when called on white Pawn at f2 with white current player' do
       it 'returns correct moves' do
         piece = board.piece_at('f', 2)
         moves = piece.possible_moves(board)
@@ -61,7 +61,7 @@ describe Chess::Pieces::Pawn do
       end
     end
 
-    context 'when called on h2 with white current player' do
+    context 'when called on white Pawn at h2 with white current player' do
       it 'returns correct moves' do
         piece = board.piece_at('h', 2)
         moves = piece.possible_moves(board)
@@ -70,7 +70,7 @@ describe Chess::Pieces::Pawn do
       end
     end
 
-    context 'when called on b6 with white current player' do
+    context 'when called on white Pawn at b6 with white current player' do
       it 'returns correct moves' do
         piece = board.piece_at('b', 6)
         moves = piece.possible_moves(board)
@@ -79,7 +79,7 @@ describe Chess::Pieces::Pawn do
       end
     end
 
-    context 'when called on e6 with white current player' do
+    context 'when called on white Pawn at e6 with white current player' do
       it 'returns correct moves' do
         piece = board.piece_at('e', 6)
         moves = piece.possible_moves(board)
