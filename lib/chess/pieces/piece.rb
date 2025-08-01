@@ -15,10 +15,6 @@ module Chess
         @valid_moves = []
       end
 
-      def test
-        puts 'hello world'
-      end
-
       # checks if piece color is black
       def black?
         @color == 'black'

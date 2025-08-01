@@ -13,7 +13,6 @@ module Chess
         while board.empty_at?(*north_west)
           moves << north_west if board.pos_in_range?(north_west)
           north_west = board.north_west_pos(*north_west)
-          pp moves
         end
         moves << north_west if board.pos_in_range?(north_west) && board.enemy_at?(*north_west)
         moves
@@ -26,7 +25,6 @@ module Chess
         while board.empty_at?(*south_west)
           moves << south_west if board.pos_in_range?(south_west)
           south_west = board.south_west_pos(*south_west)
-          pp moves
         end
         moves << south_west if board.pos_in_range?(south_west) && board.enemy_at?(*south_west)
         moves
@@ -39,7 +37,6 @@ module Chess
         while board.empty_at?(*north_east)
           moves << north_east if board.pos_in_range?(north_east)
           north_east = board.north_east_pos(*north_east)
-          pp moves
         end
         moves << north_east if board.pos_in_range?(north_east) && board.enemy_at?(*north_east)
         moves
@@ -52,7 +49,6 @@ module Chess
         while board.empty_at?(*south_east)
           moves << south_east if board.pos_in_range?(south_east)
           south_east = board.south_east_pos(*south_east)
-          pp moves
         end
         moves << south_east if board.pos_in_range?(south_east) && board.enemy_at?(*south_east)
         moves
