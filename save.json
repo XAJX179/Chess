@@ -1,5 +1,6 @@
 {
   "default": "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1",
+  "test_king": "r3k1nr/pppp1ppp/4p3/6Q1/8/8/PPP2PPP/R3K2R w KQkq - 0 1",
   "test_queen": "rnb1kbnr/pppp1ppp/5q2/QQ2p3/2P3Q1/2Q5/PP1PPPPP/RNBQKBNR w KQkq - 0 1",
   "test_rook_bishop": "r1kbB2R/8/8/P2R2pp/pB2r2P/8/4B3/R1Kb3r w - - 0 1",
   "test_pawn": "3k4/ppp1pppp/1P2P1P1/4P3/4p3/1p2p1p1/PPP1PPPP/3K4 w - - 0 1",

@@ -8,7 +8,6 @@ module Chess
     # @param board_data [Hash]
     # @return [void]
     def display_board(board_data, valid_moves = [])
-      # TODO: implement marks for valid moves.
       print_files(board_data)
       print_board_data(board_data, valid_moves)
       print_files(board_data)

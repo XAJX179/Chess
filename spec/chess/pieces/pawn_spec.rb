@@ -87,5 +87,9 @@ describe Chess::Pieces::Pawn do
         expect(moves).to contain_exactly(['f', 7])
       end
     end
+
+    # TODO: implement tests for pawn promotion
+
+    # TODO: implement tests for pawn en passant
   end
 end
