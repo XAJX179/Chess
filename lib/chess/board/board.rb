@@ -27,6 +27,8 @@ module Chess
     # Returns a new instance of Board.
     # @param fen_code [String]
     def initialize(fen_code)
+      @white_pieces = []
+      @black_pieces = []
       @data = generate_data(fen_code)
     end
 

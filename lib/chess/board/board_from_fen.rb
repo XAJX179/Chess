@@ -15,6 +15,7 @@ module Chess
       @possible_en_passant_target = fen_parts_array[3]
       @half_move = fen_parts_array[4]
       @full_move = fen_parts_array[5]
+
       create_board(board_data)
     end
 
@@ -78,10 +79,13 @@ module Chess
     # @return any subclass of {Chess::Pieces::Piece}
     def create_piece(letter)
       if letter == letter.upcase
-        white_piece(letter)
+        piece = white_piece(letter)
+        @white_pieces << piece
       else
-        black_piece(letter)
+        piece = black_piece(letter)
+        @black_pieces << piece
       end
+      piece
     end
 
     # create white color piece from the letter
@@ -99,7 +103,7 @@ module Chess
       when 'Q'
         Chess::Pieces::Queen.new(color)
       when 'K'
-        Chess::Pieces::King.new(color)
+        @white_king = Chess::Pieces::King.new(color)
       when 'P'
         Chess::Pieces::Pawn.new(color)
       end
@@ -120,7 +124,7 @@ module Chess
       when 'q'
         Chess::Pieces::Queen.new(color)
       when 'k'
-        Chess::Pieces::King.new(color)
+        @black_king = Chess::Pieces::King.new(color)
       when 'p'
         Chess::Pieces::Pawn.new(color)
       end

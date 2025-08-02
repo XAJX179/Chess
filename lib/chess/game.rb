@@ -39,7 +39,7 @@ module Chess
                  @black_player
                end
       valid_moves = player_turn(player, board, board_pos)
-      pp board_pos
+      pp board
       pp player
       gets
       redraw_display(board.data, valid_moves)
