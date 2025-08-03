@@ -101,7 +101,7 @@ module Chess
       elsif piece.is_a?(Chess::Pieces::King)
         piece_color = piece.color
         bg_color("#{move_dots(square_pos, valid_moves)}#{color(unicode, piece_color.to_sym)}#{
-            king_check_dot(piece, square_pos)}", bg_color_name)
+            king_check_dot(piece)}", bg_color_name)
       else
         piece_color = piece.color
         bg_color("#{move_dots(square_pos, valid_moves)}#{color(unicode, piece_color.to_sym)} ", bg_color_name)
@@ -116,8 +116,8 @@ module Chess
       end
     end
 
-    def king_check_dot(king, king_pos)
-      if king.in_check?(king_pos)
+    def king_check_dot(king)
+      if king.in_check
         color("\u{29BE}", :red)
       else
         "\u00A0"

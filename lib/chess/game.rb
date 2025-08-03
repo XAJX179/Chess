@@ -76,7 +76,7 @@ module Chess
         []
       else
         player.selected_piece.pos = board_pos
-        player.selected_piece.valid_moves = selected_piece_valid_moves(piece, board)
+        player.selected_piece.valid_moves = selected_piece_valid_moves(player, piece, board)
       end
     end
 
@@ -87,16 +87,41 @@ module Chess
       []
     end
 
-    def selected_piece_valid_moves(piece, board)
+    def selected_piece_valid_moves(player, piece, board)
       # TODO: implement valid_moves out of possible_moves
       possible_moves = piece.possible_moves(board)
-      legal_moves(piece, possible_moves, board)
+      legal_moves(player, piece, possible_moves, board)
       possible_moves
     end
 
-    def legal_moves(_piece, _possible_moves, _board)
+    def legal_moves(player, piece, possible_moves, board)
       legal_moves = []
+      current_game_data = store_current_data(piece, possible_moves, board)
+
+      possible_moves.each do |move|
+        player.play_move_by_type(board, move)
+        legal_moves << move unless king_comes_in_check?(piece, board)
+        restore_current_data(current_game_data)
+      end
+
+      pp current_game_data
       pp legal_moves
+    end
+
+    def king_comes_in_check?(piece, board)
+      if piece.white?
+        board.white_king.in_check?(board, board.black_pieces)
+      else
+        board.black_king.in_check?(board, board.white_pieces)
+      end
+    end
+
+    def store_current_data(_piece, _possible_moves, _board)
+      {}
+    end
+
+    def restore_current_data(_current_game_data)
+      {}
     end
 
     def same_color?(current_player, piece)

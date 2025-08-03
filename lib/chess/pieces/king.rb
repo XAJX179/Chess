@@ -6,6 +6,8 @@ module Chess
   module Pieces
     # King
     class King < Piece
+      attr_reader :in_check
+
       def possible_moves(board)
         return [] if board.current_player != @color.chr
 
@@ -45,9 +47,16 @@ module Chess
         []
       end
 
-      def in_check?(_king_pos)
+      def in_check?(board, opponent_pieces)
         # TODO: implement condition for when in check
-        true
+        @in_check = false
+        opponent_pieces.each do |piece|
+          break if @in_check
+
+          possible_moves = piece.possible_moves(board)
+          @in_check = true if possible_moves.include?(@pos)
+        end
+        @in_check
       end
     end
   end

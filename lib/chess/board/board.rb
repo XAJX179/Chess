@@ -22,7 +22,7 @@ module Chess
     # @return [Hash]
     attr_reader :data
     attr_accessor :current_player, :castling_rights, :possible_en_passant_target,
-                  :half_move, :full_move
+                  :half_move, :full_move, :white_pieces, :black_pieces, :white_king, :black_king
 
     # Returns a new instance of Board.
     # @param fen_code [String]
