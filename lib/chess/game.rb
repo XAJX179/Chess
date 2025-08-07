@@ -63,65 +63,47 @@ module Chess
     def player_turn(player, board, board_pos)
       piece = board.piece_at(*board_pos)
       if player.selected_piece == '' || same_color?(board.current_player, piece)
-        select_piece(player, board, board_pos)
+        select_piece(piece, player, board)
       else
         select_move(player, board, board_pos)
+        []
       end
     end
 
-    def select_piece(player, board, board_pos)
-      piece = board.piece_at(*board_pos)
+    def select_piece(piece, player, board)
       player.selected_piece = piece if same_color?(board.current_player, piece)
       if player.selected_piece == ''
         []
       else
-        player.selected_piece.pos = board_pos
-        player.selected_piece.valid_moves = selected_piece_valid_moves(player, piece, board)
+        player.selected_piece.valid_moves = valid_moves(piece, board)
       end
     end
 
-    def select_move(player, board, board_pos)
-      player.select_move(board, board_pos)
+    def select_move(player, board, move_pos)
+      player.select_move(board, move_pos)
       player.selected_piece.valid_moves = []
       player.selected_piece = ''
-      []
     end
 
-    def selected_piece_valid_moves(player, piece, board)
-      # TODO: implement valid_moves out of possible_moves
+    def valid_moves(piece, board)
+      valid_moves_arr = []
       possible_moves = piece.possible_moves(board)
-      legal_moves(player, piece, possible_moves, board)
-      possible_moves
-    end
+      new_player = Player.new
 
-    def legal_moves(player, piece, possible_moves, board)
-      legal_moves = []
-      current_game_data = store_current_data(piece, possible_moves, board)
-
+      fen_code = generate_fen_code(board)
       possible_moves.each do |move|
-        player.play_move_by_type(board, move)
-        legal_moves << move unless king_comes_in_check?(piece, board)
-        restore_current_data(current_game_data)
+        new_board = Chess::Board.new(fen_code)
+        new_player.selected_piece = new_board.piece_at(*piece.pos)
+        new_player.play_move_by_type(new_player.selected_piece, new_board, move)
+        # king_comes_in_check?
+        in_check = if piece.white?
+                     new_board.white_king.in_check?(new_board, new_board.black_pieces)
+                   else
+                     new_board.black_king.in_check?(new_board, new_board.white_pieces)
+                   end
+        valid_moves_arr << move unless in_check
       end
-
-      pp current_game_data
-      pp legal_moves
-    end
-
-    def king_comes_in_check?(piece, board)
-      if piece.white?
-        board.white_king.in_check?(board, board.black_pieces)
-      else
-        board.black_king.in_check?(board, board.white_pieces)
-      end
-    end
-
-    def store_current_data(_piece, _possible_moves, _board)
-      {}
-    end
-
-    def restore_current_data(_current_game_data)
-      {}
+      valid_moves_arr
     end
 
     def same_color?(current_player, piece)

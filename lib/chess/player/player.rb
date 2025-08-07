@@ -15,16 +15,12 @@ module Chess
     # select a move
     # @param board [Chess::Board]
     # @param board_pos [Array]
-    def select_move(board, board_pos)
-      pp board_pos
-      # TODO: implement select_move
-      if @selected_piece.valid_moves.include?(board_pos)
-        pp 'valid move'
-        play_move_by_type(board, board_pos)
+    def select_move(board, move_pos)
+      if @selected_piece.valid_moves.include?(move_pos)
+        play_move_by_type(@selected_piece, board, move_pos)
       else
         pp 'invalid move'
       end
-      @selected_piece
     end
 
     def change_player_turn(board)

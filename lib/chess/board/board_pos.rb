@@ -50,8 +50,8 @@ module Chess
     end
 
     def pos_in_range?((file, rank))
-      first_rank = 1
-      last_rank = 8
+      first_rank = 0
+      last_rank = 7
       first_file_ord = 'a'.ord
       last_file_ord = 'h'.ord
       rank.between?(first_rank, last_rank) && file.ord.between?(first_file_ord, last_file_ord)

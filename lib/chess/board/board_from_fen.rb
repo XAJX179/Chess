@@ -68,9 +68,7 @@ module Chess
       rank = ranks_array_index
 
       board[file][rank] = create_piece(letter)
-
-      shift_rank = 1
-      piece_pos = [file, rank + shift_rank]
+      piece_pos = [file, rank]
       board[file][rank].pos = piece_pos
     end
 

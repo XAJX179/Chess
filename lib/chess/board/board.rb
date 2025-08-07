@@ -20,8 +20,7 @@ module Chess
     #   "h"=>["R", "P", "", "", "", "", "p", "r"]
     #   }
     # @return [Hash]
-    attr_reader :data
-    attr_accessor :current_player, :castling_rights, :possible_en_passant_target,
+    attr_accessor :data, :current_player, :castling_rights, :possible_en_passant_target,
                   :half_move, :full_move, :white_pieces, :black_pieces, :white_king, :black_king
 
     # Returns a new instance of Board.
@@ -37,10 +36,9 @@ module Chess
     # @param rank [Integer]
     # @return any subclass of {Chess::Pieces::Piece}
     def piece_at(file, rank)
-      shift_rank = 1
       return if @data[file].nil?
 
-      @data[file][rank - shift_rank]
+      @data[file][rank]
     end
 
     # checks if a square is empty
@@ -52,13 +50,12 @@ module Chess
     end
 
     def remove_piece_at((file, rank))
-      shift_rank = 1
-      @data[file][rank - shift_rank] = ''
+      @data[file][rank] = ''
     end
 
     def insert_piece_at(piece, (file, rank))
-      shift_rank = 1
-      @data[file][rank - shift_rank] = piece
+      @data[file][rank] = piece
+      piece.pos = [file, rank]
     end
 
     def enemy_at?(file, rank)

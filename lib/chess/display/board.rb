@@ -22,7 +22,7 @@ module Chess
       (0..7).reverse_each do |rank|
         print rank + shift_rank
         ('a'..'h').each do |file|
-          bg_color_name = square_bg_color_name(file, rank + shift_rank)
+          bg_color_name = square_bg_color_name(file, rank)
           print_square(board_data, file, rank, bg_color_name, valid_moves)
         end
         print rank + shift_rank
@@ -49,8 +49,7 @@ module Chess
     # @return [void]
     def print_square(board_data, file, rank, bg_color_name, valid_moves)
       piece = board_data[file][rank]
-      shift_rank = 1
-      square_pos = [file, rank + shift_rank]
+      square_pos = [file, rank]
       if piece == ''
         print square_string(piece, ' ', bg_color_name, square_pos, valid_moves)
       else
@@ -83,9 +82,9 @@ module Chess
     # @return [Symbol]
     def square_bg_color_name(file, rank)
       if (file.ord.odd? && rank.odd?) || (file.ord.even? && rank.even?)
-        :green
-      else
         :dull_white
+      else
+        :green
       end
     end
 

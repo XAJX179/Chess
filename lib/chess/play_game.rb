@@ -23,7 +23,7 @@ end
 
 # choice to resume a saved game.
 #
-# {Save#read} is used to read the file data
+# {Chess::Save#read} is used to read the file data
 # @param game [Chess::Game]
 # @return [void]
 def select_save(game)

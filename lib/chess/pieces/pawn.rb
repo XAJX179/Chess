@@ -27,7 +27,7 @@ module Chess
       # @param rank [Integer]
       # @return [Boolean]
       def first_move?(rank)
-        (rank == 2 && white?) || (rank == 7 && black?)
+        (rank == 1 && white?) || (rank == 6 && black?)
       end
 
       # creates all the possible first moves

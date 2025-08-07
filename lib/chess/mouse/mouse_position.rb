@@ -33,7 +33,7 @@ module Chess
     # @return [Hash] rank_coords
     def generate_rank_coords
       rank_coords = {}
-      rank = 8 # black is on upper side of board so ranks go from 8 to 1 from top to bottom
+      rank = 7 # black is on upper side of board so ranks go from 8 to 1 (7 to 0 cuz index start = 0) from top to bottom
       board_start_y = 2
       board_end_y = 9
       (board_start_y..board_end_y).each do |elem|

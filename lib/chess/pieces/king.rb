@@ -6,7 +6,12 @@ module Chess
   module Pieces
     # King
     class King < Piece
-      attr_reader :in_check
+      attr_accessor :in_check
+
+      def initialize(color)
+        super
+        @in_check = false
+      end
 
       def possible_moves(board)
         return [] if board.current_player != @color.chr
