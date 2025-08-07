@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-describe Save::Serializer do
+describe Chess::Save::Serializer do
   subject(:game) { Chess::Game.new }
 
   describe '#serialize' do

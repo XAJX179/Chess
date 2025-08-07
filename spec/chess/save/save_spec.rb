@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-describe Save do
+describe 'Chess::Save' do
   subject(:game) { Chess::Game.new }
 
   describe '#read' do

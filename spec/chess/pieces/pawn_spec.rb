@@ -6,17 +6,17 @@ describe Chess::Pieces::Pawn do
   describe '#possible_moves' do
     context 'when called on white Pawn at a2 with white current player' do
       it 'returns correct moves' do
-        piece = board.piece_at('a', 2)
+        piece = board.piece_at('a', 1)
         moves = piece.possible_moves(board)
         display_board(board, moves)
-        expect(moves).to contain_exactly(['a', 3], ['a', 4], ['b', 3])
+        expect(moves).to contain_exactly(['a', 2], ['a', 3], ['b', 2])
       end
     end
 
     context 'when called on white Pawn at a4 with black current player' do
       it 'returns empty' do
         black_player_board = Chess::Board.new('3k4/ppp1pppp/1P2P1P1/4P3/4p3/1p2p1p1/PPP1PPPP/3K4 b - - 0 1')
-        piece = black_player_board.piece_at('a', 2)
+        piece = black_player_board.piece_at('a', 1)
         moves = piece.possible_moves(black_player_board)
         display_board(black_player_board, moves)
         expect(moves).to be_empty
@@ -27,7 +27,7 @@ describe Chess::Pieces::Pawn do
 
     context 'when called on white Pawn at b2 with white current player' do
       it 'returns empty' do
-        piece = board.piece_at('b', 2)
+        piece = board.piece_at('b', 1)
         moves = piece.possible_moves(board)
         display_board(board, moves)
         expect(moves).to be_empty
@@ -36,7 +36,7 @@ describe Chess::Pieces::Pawn do
 
     context 'when called on white Pawn at e4 with white current player' do
       it 'returns empty' do
-        piece = board.piece_at('e', 4)
+        piece = board.piece_at('e', 3)
         moves = piece.possible_moves(board)
         display_board(board, moves)
         expect(moves).to be_empty
@@ -45,46 +45,46 @@ describe Chess::Pieces::Pawn do
 
     context 'when called on white Pawn at c2 with white current player' do
       it 'returns correct moves' do
-        piece = board.piece_at('c', 2)
+        piece = board.piece_at('c', 1)
         moves = piece.possible_moves(board)
         display_board(board, moves)
-        expect(moves).to contain_exactly(['c', 3], ['c', 4], ['b', 3])
+        expect(moves).to contain_exactly(['c', 2], ['c', 3], ['b', 2])
       end
     end
 
     context 'when called on white Pawn at f2 with white current player' do
       it 'returns correct moves' do
-        piece = board.piece_at('f', 2)
+        piece = board.piece_at('f', 1)
         moves = piece.possible_moves(board)
         display_board(board, moves)
-        expect(moves).to contain_exactly(['f', 3], ['f', 4], ['e', 3], ['g', 3])
+        expect(moves).to contain_exactly(['f', 2], ['f', 3], ['e', 2], ['g', 2])
       end
     end
 
     context 'when called on white Pawn at h2 with white current player' do
       it 'returns correct moves' do
-        piece = board.piece_at('h', 2)
+        piece = board.piece_at('h', 1)
         moves = piece.possible_moves(board)
         display_board(board, moves)
-        expect(moves).to contain_exactly(['h', 3], ['h', 4], ['g', 3])
+        expect(moves).to contain_exactly(['h', 2], ['h', 3], ['g', 2])
       end
     end
 
     context 'when called on white Pawn at b6 with white current player' do
       it 'returns correct moves' do
-        piece = board.piece_at('b', 6)
+        piece = board.piece_at('b', 5)
         moves = piece.possible_moves(board)
         display_board(board, moves)
-        expect(moves).to contain_exactly(['a', 7], ['c', 7])
+        expect(moves).to contain_exactly(['a', 6], ['c', 6])
       end
     end
 
     context 'when called on white Pawn at e6 with white current player' do
       it 'returns correct moves' do
-        piece = board.piece_at('e', 6)
+        piece = board.piece_at('e', 5)
         moves = piece.possible_moves(board)
         display_board(board, moves)
-        expect(moves).to contain_exactly(['f', 7])
+        expect(moves).to contain_exactly(['f', 6])
       end
     end
 
