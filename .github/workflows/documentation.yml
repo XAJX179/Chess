@@ -30,7 +30,7 @@ jobs:
       - name: generate docs
         run: bundle exec yard doc --private --asset docs/images:images - docs/Diagram.md
       - name: yard graph
-        run: bundle exec yard graph --full --private --dependencies | circo -T png -o docs/images/diagram.png
+        run: bundle exec yard graph --full --private --dependencies | dot -T png -o docs/images/diagram.png
       - name: generate docs again
         run: bundle exec yard doc --private --asset docs/images:images - docs/Diagram.md
 
