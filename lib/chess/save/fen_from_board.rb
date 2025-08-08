@@ -13,8 +13,6 @@ module Chess
         en_passant = board.possible_en_passant_target
         half_move = board.half_move
         full_move = board.full_move
-        pp en_passant
-        gets
 
         "#{piece_placement} #{current_player} #{castling_rights} #{en_passant} #{half_move} #{full_move}"
       end

@@ -51,11 +51,18 @@ module Chess
 
     def remove_piece_at((file, rank))
       @data[file][rank] = ''
+      @black_pieces.reject! { |piece| piece.pos == [file, rank] }
+      @white_pieces.reject! { |piece| piece.pos == [file, rank] }
     end
 
     def insert_piece_at(piece, (file, rank))
       @data[file][rank] = piece
       piece.pos = [file, rank]
+      if @current_player == 'w'
+        @white_pieces << piece
+      else
+        @black_pieces << piece
+      end
     end
 
     def enemy_at?(file, rank)
