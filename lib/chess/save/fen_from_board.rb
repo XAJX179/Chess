@@ -17,7 +17,7 @@ module Chess
         "#{piece_placement} #{current_player} #{castling_rights} #{en_passant} #{half_move} #{full_move}"
       end
 
-      def fen_piece_placement(board_data)
+      def fen_piece_placement(board_data) # rubocop:disable Metrics/AbcSize,Metrics/MethodLength
         string = ''
         (0..7).reverse_each do |rank|
           empty_space = 0

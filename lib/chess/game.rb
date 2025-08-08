@@ -83,7 +83,7 @@ module Chess
       player.selected_piece = ''
     end
 
-    def valid_moves(piece, board)
+    def valid_moves(piece, board) # rubocop:disable Metrics/MethodLength
       valid_moves_arr = []
       possible_moves = piece.possible_moves(board)
       new_player = Player.new
@@ -93,15 +93,19 @@ module Chess
         new_board = Chess::Board.new(fen_code)
         new_player.selected_piece = new_board.piece_at(*piece.pos)
         new_player.play_move_by_type(new_player.selected_piece, new_board, move)
-        # king_comes_in_check?
-        in_check = if piece.white?
-                     new_board.white_king.in_check?(new_board, new_board.black_pieces)
-                   else
-                     new_board.black_king.in_check?(new_board, new_board.white_pieces)
-                   end
+        in_check = king_comes_in_check?(piece, new_board)
+
         valid_moves_arr << move unless in_check
       end
       valid_moves_arr
+    end
+
+    def king_comes_in_check?(piece, new_board)
+      if piece.white?
+        new_board.white_king.in_check?(new_board, new_board.black_pieces)
+      else
+        new_board.black_king.in_check?(new_board, new_board.white_pieces)
+      end
     end
 
     def same_color?(current_player, piece)
