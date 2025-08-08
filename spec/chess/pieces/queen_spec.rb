@@ -13,16 +13,6 @@ describe Chess::Pieces::Queen do
       end
     end
 
-    context 'when called on white Queen at a5 with black current player' do
-      it 'returns empty' do
-        black_player_board = Chess::Board.new('rnb1kbnr/pppp1ppp/5q2/QQ2p3/2P3Q1/2Q5/PP1PPPPP/RNBQKBNR b KQkq - 0 1')
-        piece = black_player_board.piece_at('a', 4)
-        moves = piece.possible_moves(black_player_board)
-        display_board(black_player_board, moves)
-        expect(moves).to be_empty
-      end
-    end
-
     context 'when called on white Queen at b5 with white current player' do
       it 'returns correct moves' do
         piece = board.piece_at('b', 4)

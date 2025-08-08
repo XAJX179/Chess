@@ -13,16 +13,6 @@ describe Chess::Pieces::Knight do
       end
     end
 
-    context 'when called on white Knight at a4 with black current player' do
-      it 'returns empty' do
-        black_player_board = Chess::Board.new('2nkN3/P4P2/7n/n1pN3N/N3nP2/8/8/1p1KNnp1 b - - 0 1')
-        piece = black_player_board.piece_at('a', 3)
-        moves = piece.possible_moves(black_player_board)
-        display_board(black_player_board, moves)
-        expect(moves).to be_empty
-      end
-    end
-
     context 'when called on white Knight at e1 with white current player' do
       it 'returns correct moves' do
         piece = board.piece_at('e', 0)

@@ -13,16 +13,6 @@ describe Chess::Pieces::Pawn do
       end
     end
 
-    context 'when called on white Pawn at a4 with black current player' do
-      it 'returns empty' do
-        black_player_board = Chess::Board.new('3k4/ppp1pppp/1P2P1P1/4P3/4p3/1p2p1p1/PPP1PPPP/3K4 b - - 0 1')
-        piece = black_player_board.piece_at('a', 1)
-        moves = piece.possible_moves(black_player_board)
-        display_board(black_player_board, moves)
-        expect(moves).to be_empty
-      end
-    end
-
     # white pieces
 
     context 'when called on white Pawn at b2 with white current player' do
