@@ -7,8 +7,6 @@ module Chess
     # Knight
     class Knight < Piece
       def possible_moves(board)
-        return [] if board.current_player != @color.chr
-
         file = @pos[0]
         rank = @pos[1]
         moves = []

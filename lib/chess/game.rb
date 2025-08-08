@@ -39,6 +39,7 @@ module Chess
                  @black_player
                end
       valid_moves = player_turn(player, board, board_pos)
+      update_king_status(board)
       redraw_display(board.data, valid_moves)
     end
 
@@ -105,6 +106,15 @@ module Chess
 
     def same_color?(current_player, piece)
       piece.color.chr == current_player unless piece == ''
+    end
+
+    def update_king_status(board)
+      current_player = board.current_player
+      board.current_player = 'b'
+      board.white_king.in_check?(board, board.black_pieces)
+      board.current_player = 'w'
+      board.black_king.in_check?(board, board.white_pieces)
+      board.current_player = current_player
     end
 
     # save the game
