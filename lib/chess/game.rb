@@ -83,16 +83,20 @@ module Chess
       player.selected_piece = ''
     end
 
-    def valid_moves(piece, board) # rubocop:disable Metrics/MethodLength
-      valid_moves_arr = []
+    def valid_moves(piece, board)
       possible_moves = piece.possible_moves(board)
       new_player = Player.new
 
       fen_code = generate_fen_code(board)
+      valid_moves_from_possible_moves(piece, possible_moves, fen_code, new_player)
+    end
+
+    def valid_moves_from_possible_moves(piece, possible_moves, fen_code, new_player)
+      valid_moves_arr = []
       possible_moves.each do |move|
         new_board = Chess::Board.new(fen_code)
         new_player.selected_piece = new_board.piece_at(*piece.pos)
-        new_player.play_move_by_type(new_player.selected_piece, new_board, move)
+        new_player.play_move_by_type(new_player.selected_piece, new_board, move, inside_valid_moves_flag: true)
         in_check = king_comes_in_check?(piece, new_board)
 
         valid_moves_arr << move unless in_check

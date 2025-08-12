@@ -6,6 +6,7 @@ module Chess
   module Save
     include Serializer
     include FenCodeFromBoard
+
     # writes a save to the save file
     #
     # @return [void]

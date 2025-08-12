@@ -50,5 +50,18 @@ module Chess
         question.validate regex, 'Invalid FEN Code.            '
       end
     end
+
+    # Prompts User to choose piece to promote pawn
+    #
+    # @return [String] the letter of the piece
+    def prompt_pawn_promotion_choices
+      prompt = TTY::Prompt.new
+      prompt.select('Select the piece for pawn promotion!') do |menu|
+        menu.choice name: 'Queen', value: 'q'
+        menu.choice name: 'Knight', value: 'n'
+        menu.choice name: 'Bishop', value: 'b'
+        menu.choice name: 'Rook', value: 'r'
+      end
+    end
   end
 end

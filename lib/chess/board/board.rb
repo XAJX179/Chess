@@ -6,6 +6,7 @@ module Chess
   class Board
     include BoardFromFenCode
     include BoardPos
+
     # 'a’ to ‘h’ are files, rnbqkp are black pieces
     # and RNBQKP are white pieces along the 8 ranks.
     # @example generated data looks like this
@@ -59,9 +60,9 @@ module Chess
       @data[file][rank] = piece
       piece.pos = [file, rank]
       if @current_player == 'w'
-        @white_pieces << piece
+        @white_pieces << piece unless @white_pieces.include?(piece)
       else
-        @black_pieces << piece
+        @black_pieces << piece unless @white_pieces.include?(piece)
       end
     end
 

@@ -14,7 +14,7 @@ module Chess
 
     # select a move
     # @param board [Chess::Board]
-    # @param board_pos [Array]
+    # @param move_pos [Array]
     def select_move(board, move_pos)
       if @selected_piece.valid_moves.include?(move_pos)
         play_move_by_type(@selected_piece, board, move_pos)

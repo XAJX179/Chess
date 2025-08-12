@@ -17,22 +17,28 @@ module Chess
         "#{piece_placement} #{current_player} #{castling_rights} #{en_passant} #{half_move} #{full_move}"
       end
 
-      def fen_piece_placement(board_data) # rubocop:disable Metrics/AbcSize,Metrics/MethodLength
+      def fen_piece_placement(board_data)
         string = ''
         (0..7).reverse_each do |rank|
-          empty_space = 0
-          ('a'..'h').each do |file|
-            piece = board_data[file][rank]
-            if piece == ''
-              empty_space += 1
-              string += empty_space.to_s if file == 'h'
-            else
-              string += empty_space.to_s unless empty_space.zero?
-              string += letter_of(piece)
-              empty_space = 0
-            end
-          end
+          string += fen_piece_placement_by_rank(board_data, rank)
           string += '/' unless rank.zero?
+        end
+        string
+      end
+
+      def fen_piece_placement_by_rank(board_data, rank) # rubocop:disable Metrics/MethodLength
+        string = ''
+        empty_space = 0
+        ('a'..'h').each do |file|
+          piece = board_data[file][rank]
+          if piece == ''
+            empty_space += 1
+            string += empty_space.to_s if file == 'h'
+          else
+            string += empty_space.to_s unless empty_space.zero?
+            string += letter_of(piece)
+            empty_space = 0
+          end
         end
         string
       end

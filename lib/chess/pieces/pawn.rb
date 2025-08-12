@@ -13,11 +13,7 @@ module Chess
         moves = []
         file = @pos[0]
         rank = @pos[1]
-        moves += if first_move?(rank)
-                   first_moves(board, file, rank)
-                 else
-                   other_moves(board, file, rank)
-                 end
+        moves += pawn_moves_by_color(board, file, rank)
         moves
       end
 
@@ -33,18 +29,11 @@ module Chess
       # @param file [String]
       # @param rank [Integer]
       # @return [Array] moves
-      def first_moves(board, file, rank)
+      def pawn_moves_by_color(board, file, rank)
         moves = []
         moves += one_step_forward(board, file, rank)
-        moves += two_step_forward(board, file, rank)
-        moves += cross_side_attack(board, file, rank)
-        moves.reject!(&:empty?)
-        moves
-      end
-
-      def other_moves(board, file, rank)
-        moves = []
-        moves += one_step_forward(board, file, rank)
+        moves += two_step_forward(board, file, rank) if first_move?(rank)
+        moves += attack_en_passant(board, file, rank) unless first_move?(rank)
         moves += cross_side_attack(board, file, rank)
         moves.reject!(&:empty?)
         moves
@@ -88,7 +77,6 @@ module Chess
         north_two_step = board.north_pos(*north_one_step)
         return [] unless board.empty_at?(*north_one_step) && board.empty_at?(*north_two_step)
 
-        set_en_passant_target(board, file, rank)
         north_two_step
       end
 
@@ -101,12 +89,7 @@ module Chess
           return []
         end
 
-        set_en_passant_target(board, file, rank)
         south_two_step
-      end
-
-      def set_en_passant_target(board, file, rank)
-        board.possible_en_passant_target = file + rank.to_s
       end
 
       # cross attack moves of pawn
@@ -142,6 +125,22 @@ module Chess
           moves << pos if !(board.empty_at?(*pos) || board.pos_nil?(pos)) &&
                           board.piece_at(*pos).white? &&
                           board.pos_in_range?(pos)
+        end
+        moves
+      end
+
+      def attack_en_passant(board, file, rank) # rubocop:disable Metrics/AbcSize,Metrics/MethodLength
+        moves = []
+        if white?
+          north_east = board.north_east_pos(file, rank)
+          moves << north_east if (north_east.first + north_east.last.to_s) == board.possible_en_passant_target
+          north_west = board.north_west_pos(file, rank)
+          moves << north_west if (north_west.first + north_west.last.to_s) == board.possible_en_passant_target
+        else
+          south_east = board.south_east_pos(file, rank)
+          moves << south_east if (south_east.first + south_east.last.to_s) == board.possible_en_passant_target
+          south_west = board.south_west_pos(file, rank)
+          moves << south_west if (south_west.first + south_west.last.to_s) == board.possible_en_passant_target
         end
         moves
       end
