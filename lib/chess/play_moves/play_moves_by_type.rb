@@ -7,7 +7,6 @@ module Chess
     include PlayPawnMoves
     include PlayKingMoves
 
-    # TODO: implement play_move_by_type
     def play_move_by_type(piece, board, move_pos, inside_valid_moves_flag: false)
       @remove_en_passant = true
       if piece.is_a?(Pieces::Pawn)

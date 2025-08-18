@@ -9,7 +9,7 @@ describe Chess::Pieces::King do
         piece = board.piece_at('e', 0)
         moves = piece.possible_moves(board)
         display_board(board, moves)
-        expect(moves).to contain_exactly(['e', 1], ['f', 0], ['d', 0], ['d', 1])
+        expect(moves).to contain_exactly(['c', 0], ['d', 0], ['d', 1], ['e', 1], ['f', 0], ['g', 0])
       end
     end
 

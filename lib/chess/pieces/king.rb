@@ -109,49 +109,6 @@ module Chess
         pieces.all?('')
       end
 
-      #  no_danger_to_king_in_path?(board, ['e', 0], ['g', 0])
-      #
-      #  no_danger_to_king_in_path?(board, ['c', 0], ['e', 0])
-      #
-      #  no_danger_to_king_in_path?(board, ['e', 7], ['g', 7])
-      #
-      #  no_danger_to_king_in_path?(board, ['c', 7], ['e', 7])
-      #
-      #
-      #
-      # def no_danger_to_king_in_path?(board, start, finish)
-      #   pos_arr = get_positions(start, finish)
-      #   fen_code = generate_fen_code(board)
-      #   new_player = Player.new
-      #   !check_danger(pos_arr, fen_code, new_player)
-      # end
-      #
-      # def check_danger(pos_arr, fen_code, new_player)
-      #   in_check = false
-      #   pos_arr.each do |pos|
-      #     new_board = Chess::Board.new(fen_code)
-      #     new_player.selected_piece = new_board.piece_at(*@pos)
-      #     new_player.play_move_by_type(new_player.selected_piece, new_board, pos, inside_valid_moves_flag: true)
-      #     in_check = in_check?(new_board, new_board.black_pieces) if white?
-      #     in_check = in_check?(new_board, new_board.black_pieces) if black?
-      #   end
-      #   in_check
-      # end
-      #
-      # def get_positions(start, finish)
-      #   curr_file = start.first
-      #   rank = start.last
-      #   pos_arr = []
-      #   loop do
-      #     pos = [curr_file, rank]
-      #     pos_arr << pos
-      #     break if pos.first == finish.first
-      #
-      #     curr_file = (curr_file.ord + 1).chr
-      #   end
-      #   pos_arr
-      # end
-
       def in_check?(board, opponent_pieces)
         # TODO: implement condition for when in check
         @in_check = false
