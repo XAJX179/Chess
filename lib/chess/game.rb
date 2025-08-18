@@ -203,7 +203,10 @@ module Chess
         file = position.first
         rank = position.last.to_i
         piece = board.piece_at(file, rank)
-        board.castling_rights.sub!(rights, '') unless piece.is_a?(type) && same_color?(color, piece)
+        rights = rights.chars
+        rights.each do |right|
+          board.castling_rights.sub!(right, '') unless piece.is_a?(type) && same_color?(color, piece)
+        end
       end
     end
 
