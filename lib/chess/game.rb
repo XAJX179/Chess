@@ -130,6 +130,7 @@ module Chess
     end
 
     def invalid_castling_move?(move, piece, fen_code, new_player)
+      return true if piece.in_check
       file = move.first
       if file.downcase == 'c'
         invalid_queen_side_castle?(move, piece, fen_code, new_player)
@@ -139,17 +140,17 @@ module Chess
     end
 
     def invalid_queen_side_castle?(move, piece, fen_code, new_player)
-      incheck = castling_king_passes_check?(move, piece, fen_code, new_player)
+      comes_in_check = castling_king_passes_check?(move, piece, fen_code, new_player)
       move = ['d', move.last]
       passes_check = castling_king_passes_check?(move, piece, fen_code, new_player)
-      passes_check || incheck
+      passes_check || comes_in_check
     end
 
     def invalid_king_side_castle?(move, piece, fen_code, new_player)
-      incheck = castling_king_passes_check?(move, piece, fen_code, new_player)
+      comes_in_check = castling_king_passes_check?(move, piece, fen_code, new_player)
       move = ['f', move.last]
       passes_check = castling_king_passes_check?(move, piece, fen_code, new_player)
-      passes_check || incheck
+      passes_check || comes_in_check
     end
 
     def castling_king_passes_check?(move, piece, fen_code, new_player)
@@ -194,7 +195,7 @@ module Chess
       update_castling_rights_for_each_pos(board, location_piece_color_and_rights)
     end
 
-    def update_castling_rights_for_each_pos(board, location_piece_color_and_rights)
+    def update_castling_rights_for_each_pos(board, location_piece_color_and_rights) # rubocop:disable Metrics/AbcSize,Metrics/MethodLength
       location_piece_color_and_rights.each_key do |pos|
         type = location_piece_color_and_rights[pos].first
         color = location_piece_color_and_rights[pos][1]
