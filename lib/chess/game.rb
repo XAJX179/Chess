@@ -39,10 +39,9 @@ module Chess
                  @black_player
                end
       update_castling_rights(board)
-      pp board.castling_rights
-      gets
       valid_moves = player_turn(player, board, board_pos)
       update_king_status(board)
+      detect_win_or_draws(board)
       redraw_display(board.data, valid_moves)
     end
 
@@ -131,6 +130,7 @@ module Chess
 
     def invalid_castling_move?(move, piece, fen_code, new_player)
       return true if piece.in_check
+
       file = move.first
       if file.downcase == 'c'
         invalid_queen_side_castle?(move, piece, fen_code, new_player)
@@ -209,6 +209,16 @@ module Chess
           board.castling_rights.sub!(right, '') unless piece.is_a?(type) && same_color?(color, piece)
         end
       end
+    end
+
+    def detect_win_or_draws(board)
+      return unless fifty_move_draw?(board)
+
+      pp 'draw'
+    end
+
+    def fifty_move_draw?(board)
+      board.half_move >= 100
     end
 
     # save the game

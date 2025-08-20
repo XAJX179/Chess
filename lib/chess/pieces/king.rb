@@ -110,7 +110,6 @@ module Chess
       end
 
       def in_check?(board, opponent_pieces)
-        # TODO: implement condition for when in check
         @in_check = false
         opponent_pieces.each do |piece|
           break if @in_check

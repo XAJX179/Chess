@@ -62,7 +62,6 @@ module Chess
       # @param rank [Integer]
       # @return [Array] moves
       def two_step_forward(board, file, rank)
-        # TODO: implement en passant
         moves = []
         moves << if white?
                    north_two_step(board, file, rank)

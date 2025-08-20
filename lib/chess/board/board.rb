@@ -70,5 +70,9 @@ module Chess
       piece = piece_at(file, rank)
       @current_player != piece.color.chr
     end
+
+    def reset_half_move
+      @half_move = 0
+    end
   end
 end

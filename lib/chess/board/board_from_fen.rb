@@ -13,8 +13,8 @@ module Chess
       @current_player = fen_parts_array[1]
       @castling_rights = fen_parts_array[2]
       @possible_en_passant_target = fen_parts_array[3]
-      @half_move = fen_parts_array[4]
-      @full_move = fen_parts_array[5]
+      @half_move = fen_parts_array[4].to_i
+      @full_move = fen_parts_array[5].to_i
 
       create_board(board_data)
     end

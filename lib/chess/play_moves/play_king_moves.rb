@@ -19,6 +19,10 @@ module Chess
 
     def play_castling_move(piece, board, move_pos)
       play_normal_move(piece, board, move_pos)
+      play_rook_jump_move(piece, board, move_pos)
+    end
+
+    def play_rook_jump_move(piece, board, rook_move_pos) # rubocop:disable Metrics/MethodLength
       king_file = piece.pos.first
       king_rank = piece.pos.last
       if king_file == 'c'
