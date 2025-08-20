@@ -66,7 +66,7 @@ module Chess
       if x.between?(5, 15)
         'save&exit'
       else
-        'exit'
+        'game_exit'
       end
     end
   end

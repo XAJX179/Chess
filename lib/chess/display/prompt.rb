@@ -28,7 +28,7 @@ module Chess
     def prompt_select_save(save_data)
       names = save_data.keys
       prompt = TTY::Prompt.new
-      selected_save_key = prompt.select('Select a save.') do |menu|
+      selected_save_key = prompt.select('Select a save.', per_page: 15, filter: true) do |menu|
         names.each do |name|
           menu.choice name: name, value: name
         end
@@ -61,6 +61,15 @@ module Chess
         menu.choice name: 'Knight', value: 'n'
         menu.choice name: 'Bishop', value: 'b'
         menu.choice name: 'Rook', value: 'r'
+      end
+    end
+
+    def prompt_save_name
+      prompt = TTY::Prompt.new
+      prompt.ask('Enter a valid save name : ') do |question|
+        regex = /^[\w.]+$/
+        question.required true
+        question.validate regex, 'Only a-z , A-Z , 0-9 , _ allowed'
       end
     end
   end

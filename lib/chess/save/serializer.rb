@@ -9,13 +9,11 @@ module Chess
       # Serializing format used for save and load
       SERIALIZER = JSON
 
-      # serializes with name as key and code as value for a hash
+      # serializes the save data with save_name as keys and FEN as values
       #
       # @return [String]
-      def serialize(name, code)
-        hash = {}
-        hash[name] = code
-        SERIALIZER.dump hash
+      def serialize(data)
+        SERIALIZER.dump data
       end
 
       # unserializes the given string and returns the Hash

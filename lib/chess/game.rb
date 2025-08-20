@@ -25,7 +25,7 @@ module Chess
       if clicked == 'board'
         board_action(board, board_pos)
       else
-        button_action(mouse_coord)
+        button_action(board, mouse_coord)
       end
     end
 
@@ -47,12 +47,12 @@ module Chess
 
     # actions for clicks on buttons
     # @param mouse_coord [Array]
-    def button_action(mouse_coord)
+    def button_action(board, mouse_coord)
       type = button_type(mouse_coord)
       if type == 'save&exit'
-        save_and_exit
+        save_and_exit(board)
       else
-        exit
+        game_exit
       end
     end
 
@@ -222,21 +222,23 @@ module Chess
     end
 
     # save the game
-    def save
-      pp 'save'
-      # TODO: implement save
+    def save_game(board)
+      save_name = prompt_save_name
+      pp save_name
+      fen = generate_fen_code(board)
+      save(save_name, fen)
     end
 
     # exits the game
-    def exit
-      pp 'exit'
-      # TODO: implement exit
+    def game_exit
+      pp 'exiting...'
+      0
     end
 
     # save and exit the game
-    def save_and_exit
-      pp 'save_and_exit'
-      # TODO: implement save and exit
+    def save_and_exit(board)
+      save_game(board)
+      game_exit
     end
   end
 end

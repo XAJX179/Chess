@@ -10,8 +10,11 @@ module Chess
     # writes a save to the save file
     #
     # @return [void]
-    def save
-      pp 'saving'
+    def save(name, data)
+      file_data = read
+      file_data[name] = data
+      new_data_serialized = serialize(file_data)
+      File.write('save.json', new_data_serialized)
     end
 
     # reads and returns saves from the save file.

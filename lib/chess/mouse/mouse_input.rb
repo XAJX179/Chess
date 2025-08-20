@@ -48,7 +48,8 @@ module Chess
         coord = read_input(char)
         board_pos = clicked_element(coord, file_coords, rank_coords)
         clicked = read_clicked(board_pos, coord)
-        select_click_action(board, clicked, board_pos, coord)
+        return_value = select_click_action(board, clicked, board_pos, coord)
+        break if game_exit?(return_value)
       end
     end
 
@@ -75,6 +76,10 @@ module Chess
       else
         'outside'
       end
+    end
+
+    def game_exit?(value)
+      value == 0
     end
   end
 end
