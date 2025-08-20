@@ -79,7 +79,7 @@ module Chess
     end
 
     def game_exit?(value)
-      value.zero?
+      value == 0
     end
   end
 end
