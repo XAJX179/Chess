@@ -38,7 +38,7 @@ module Chess
 
     # runs loop for mouse input
     # @param board [Chess::Board]
-    def input_loop(board)
+    def input_loop(board) # rubocop:disable Metrics/MethodLength
       file_coords = generate_file_coords
       rank_coords = generate_rank_coords
       loop do
@@ -79,7 +79,7 @@ module Chess
     end
 
     def game_exit?(value)
-      value == 0
+      value.zero?
     end
   end
 end

@@ -5,10 +5,14 @@ describe Chess::Save::Serializer do
 
   describe '#serialize' do
     context 'when called' do
-      let(:string) { 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1' }
+      let(:data) do
+        {
+          default: 'rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1'
+        }
+      end
 
       it 'serializes the string' do
-        expect(game.serialize('default', string)).to eq(
+        expect(game.serialize(data)).to eq(
           '{"default":"rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1"}'
         )
       end

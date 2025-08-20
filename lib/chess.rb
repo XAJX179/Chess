@@ -27,7 +27,9 @@ require_relative 'chess/play_moves/play_king_moves'
 require_relative 'chess/play_moves/play_pawn_moves'
 require_relative 'chess/play_moves/play_moves_by_type'
 require_relative 'chess/player/player'
-require_relative 'chess/game'
+require_relative 'chess/game/valid_moves'
+require_relative 'chess/game/win_and_draw'
+require_relative 'chess/game/game'
 require_relative 'chess/play_game'
 
 # Chess
