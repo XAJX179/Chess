@@ -43,8 +43,8 @@ module Chess
       update_castling_rights(board)
       valid_moves = player_turn(player, board, board_pos)
       update_king_status(board)
-      detect_win_or_draws(board)
       redraw_display(board.data, valid_moves)
+      detect_win_or_draws(board)
     end
 
     # actions for clicks on buttons
@@ -118,7 +118,7 @@ module Chess
       location_piece_color_and_rights.each_key do |pos|
         type = location_piece_color_and_rights[pos].first
         color = location_piece_color_and_rights[pos][1]
-        rights = location_piece_color_and_rights[pos][2]
+        rights = location_piece_color_and_rights[pos].last
         position = pos.to_s.chars
         file = position.first
         rank = position.last.to_i
