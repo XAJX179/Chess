@@ -4,7 +4,7 @@
 module Chess
   # WinAndDraw
   module WinAndDraw
-    def detect_win_or_draws(board)
+    def detect_win_or_draws(board) # rubocop:disable Metrics/MethodLength
       if checkmate?(board)
         puts 'Checkmate!'
         return game_exit
