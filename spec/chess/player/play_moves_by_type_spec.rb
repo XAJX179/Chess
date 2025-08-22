@@ -60,12 +60,13 @@ describe 'Chess::PlayMovesByType' do
     end
 
     context 'when king move' do
-      # TODO: write king tests
       before do
         Chess::Board.new('r3k1nr/pppp1ppp/4p3/6Q1/8/8/PPP2PPP/R3K2R w KQkq - 0 1')
       end
 
-      xit 'can play normal move' do
+      # TODO: write King tests
+      it 'can play normal move' do
+        skip 'will write later'
         piece = board.piece_at('e', 0)
         player.play_move_by_type(piece, board, ['h', 2], inside_valid_moves_flag: false)
       end

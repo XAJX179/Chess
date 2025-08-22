@@ -79,7 +79,7 @@ module Chess
     end
 
     def game_exit?(value)
-      value == 0
+      value == 0 # rubocop:disable Style/NumericPredicate
     end
   end
 end
