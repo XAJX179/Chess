@@ -60,15 +60,20 @@ describe 'Chess::PlayMovesByType' do
     end
 
     context 'when king move' do
-      before do
-        Chess::Board.new('r3k1nr/pppp1ppp/4p3/6Q1/8/8/PPP2PPP/R3K2R w KQkq - 0 1')
+      it 'can play normal move' do
+        board = Chess::Board.new('r3k1nr/pppp1ppp/4p3/6Q1/8/8/PPP2PPP/R3K2R w KQkq - 0 1')
+        piece = board.piece_at('e', 0)
+        player.play_move_by_type(piece, board, ['d', 0], inside_valid_moves_flag: false)
+        expect(piece.pos).to eq(['d', 0])
       end
 
-      # TODO: write King tests
-      it 'can play normal move' do
-        skip 'will write later'
-        piece = board.piece_at('e', 0)
-        player.play_move_by_type(piece, board, ['h', 2], inside_valid_moves_flag: false)
+      it 'can play castling move' do # rubocop:disable RSpec/ExampleLength
+        board = Chess::Board.new('r3k1nr/pppp1ppp/4p3/6Q1/8/8/PPP2PPP/R3K2R w KQkq - 0 1')
+        king = board.piece_at('e', 0)
+        rook = board.piece_at('a', 0)
+        expect do
+          player.play_move_by_type(king, board, ['c', 0], inside_valid_moves_flag: false)
+        end.to change { king.pos }.from(['e', 0]).to(['c', 0]).and change { rook.pos }.from(['a', 0]).to(['d', 0])
       end
     end
   end
