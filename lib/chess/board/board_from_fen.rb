@@ -6,7 +6,7 @@ module Chess
   module BoardFromFenCode
     # generate game’s data from FEN code.
     # @param fen_code [String]
-    # @return [void]
+    # @return [Hash] generated_board_data
     def generate_data(fen_code)
       fen_parts_array = fen_code.split
       board_data = fen_parts_array[0]
@@ -62,6 +62,11 @@ module Chess
     end
 
     # insert a piece on given board
+    # @param board [Hash]
+    # @param index [Integer]
+    # @param ranks_array_index [Integer]
+    # @param letter [String]
+    # @return [void]
     def insert_piece(board, index, ranks_array_index, letter)
       shift_ord = 96
       file = (shift_ord + index).chr

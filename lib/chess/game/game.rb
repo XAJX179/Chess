@@ -20,7 +20,7 @@ module Chess
     # @param clicked [String]
     # @param board_pos [Array]
     # @param mouse_coord [Array]
-    # return [void]
+    # @return [nil,Integer] nil or Exit Code 0
     def select_click_action(board, clicked, board_pos, mouse_coord)
       return if clicked == 'outside'
 
@@ -34,6 +34,7 @@ module Chess
     # actions for clicks on board
     # @param board [Chess:Board]
     # @param board_pos [Array]
+    # @return [nil,Integer] nil or Exit Code 0
     def board_action(board, board_pos)
       player = if board.current_player == 'w'
                  @white_player
@@ -48,7 +49,9 @@ module Chess
     end
 
     # actions for clicks on buttons
+    # @param board [Chess::Board]
     # @param mouse_coord [Array]
+    # @return [nil,Integer] nil or Exit Code 0
     def button_action(board, mouse_coord)
       type = button_type(mouse_coord)
       if type == 'save&exit'
@@ -62,6 +65,7 @@ module Chess
     # @param player [Chess::Player]
     # @param board [Chess::Board]
     # @param board_pos [Array]
+    # @return [void]
     def player_turn(player, board, board_pos)
       piece = board.piece_at(*board_pos)
       if player.selected_piece == '' || same_color?(board.current_player, piece)
@@ -72,6 +76,11 @@ module Chess
       end
     end
 
+    # player turn to select move
+    # @param piece any subclass of {Chess::Pieces::Piece}
+    # @param player [Chess::Player]
+    # @param board [Chess::Board]
+    # @return [void]
     def select_piece(piece, player, board)
       player.selected_piece = piece if same_color?(board.current_player, piece)
       if player.selected_piece == ''
@@ -81,16 +90,30 @@ module Chess
       end
     end
 
+    # selects move to play
+    #
+    # @param player [Chess::Player]
+    # @param board [Chess::Board]
+    # @param move_pos [Array]
+    # @return [void]
     def select_move(player, board, move_pos)
       player.select_move(board, move_pos)
       player.selected_piece.valid_moves = []
       player.selected_piece = ''
     end
 
+    # checks if current_player and piece have same color
+    #
+    # @param current_player [String] from {Chess::Board#current_player}
+    # @param piece any subclass of {Chess::Pieces::Piece}
     def same_color?(current_player, piece)
       piece.color.chr == current_player unless piece == ''
     end
 
+    # updates king's @in_check attribute
+    #
+    # @param board [Chess::Board]
+    # @return [void]
     def update_king_status(board)
       current_player = board.current_player
       board.current_player = 'b'
@@ -100,6 +123,10 @@ module Chess
       board.current_player = current_player
     end
 
+    # updates castling_rights for board
+    #
+    # @param board [Chess::Board]
+    # @return [void]
     def update_castling_rights(board)
       return if board.castling_rights == ''
 
@@ -114,6 +141,11 @@ module Chess
       update_castling_rights_for_each_pos(board, location_piece_color_and_rights)
     end
 
+    # helper method for {#update_castling_rights}
+    #
+    # @param board [Chess::Board]
+    # @param  location_piece_color_and_rights [Hash]
+    # @return [void]
     def update_castling_rights_for_each_pos(board, location_piece_color_and_rights) # rubocop:disable Metrics/AbcSize,Metrics/MethodLength
       location_piece_color_and_rights.each_key do |pos|
         type = location_piece_color_and_rights[pos].first

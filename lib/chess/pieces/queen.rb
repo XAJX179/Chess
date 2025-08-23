@@ -9,6 +9,10 @@ module Chess
       include RookMoves
       include BishopMoves
 
+      # all possible_moves of Queen
+      #
+      # @param board [Chess::Board]
+      # @return [Array] possible_moves_arr
       def possible_moves(board)
         file = @pos[0]
         rank = @pos[1]

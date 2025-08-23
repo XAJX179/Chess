@@ -15,6 +15,10 @@ module Chess
         @in_check = false
       end
 
+      # all possible_moves of Bishop
+      #
+      # @param board [Chess::Board]
+      # @return [Array] possible_moves_arr
       def possible_moves(board)
         file = @pos[0]
         rank = @pos[1]
@@ -24,6 +28,12 @@ module Chess
         moves
       end
 
+      # gets one step possible move in all direction for king
+      #
+      # @param board [Chess::Board]
+      # @param file [String]
+      # @param rank [Integer]
+      # @return [Array] all_dir_possible_moves_arr
       def one_step_all_direction_moves(board, file, rank)
         north = board.north_pos(file, rank)
         south = board.south_pos(file, rank)
@@ -38,6 +48,11 @@ module Chess
         get_moves_on_direction(board, directions)
       end
 
+      # helper method for {#one_step_all_direction_moves}
+      #
+      # @param board [Chess::Board]
+      # @param directions [Array]
+      # @return [Array] all_dir_possible_moves_arr
       def get_moves_on_direction(board, directions)
         moves = []
         directions.each do |direction|
@@ -48,6 +63,10 @@ module Chess
         moves
       end
 
+      # finds possible castling moves
+      #
+      # @param board [Chess::Board]
+      # @return [Array] castling_moves_arr
       def castling_moves(board)
         moves = []
         if valid_castling_rights?(board)
@@ -60,6 +79,9 @@ module Chess
         moves
       end
 
+      # check if valid_castling_rights exits
+      #
+      # @param board [Chess::Board]
       def valid_castling_rights?(board)
         return false if board.castling_rights == '-'
 
@@ -69,6 +91,9 @@ module Chess
           board.castling_rights.include?('q')
       end
 
+      # helper method for {#castling_moves}
+      # @param (see #castling_moves)
+      # @return (see #castling_moves)
       def white_castling_moves(board)
         moves = []
         moves << ['g', 0] if board.castling_rights.include?('K') && can_castle?(board, 'K')
@@ -76,6 +101,9 @@ module Chess
         moves
       end
 
+      # helper method for {#castling_moves}
+      # @param (see #castling_moves)
+      # @return (see #castling_moves)
       def black_castling_moves(board)
         moves = []
         moves << ['g', 7] if board.castling_rights.include?('k') && can_castle?(board, 'k')
@@ -83,6 +111,10 @@ module Chess
         moves
       end
 
+      # check if can castle(no_piece_in_between) for the given castling_right
+      #
+      # @param board [Chess::Board]
+      # @param castling_right [String]
       def can_castle?(board, castling_right)
         case castling_right
         when 'Q'
@@ -96,6 +128,12 @@ module Chess
         end
       end
 
+      # checks if no piece in between start and finish
+      # helper method for {#can_castle?}
+      #
+      # @param board [Chess::Board]
+      # @param start [Array]
+      # @param finish [Array]
       def no_piece_in_between?(board, start, finish)
         curr_file = start.first
         rank = start.last
@@ -109,6 +147,10 @@ module Chess
         pieces.all?('')
       end
 
+      # checks if king is in check by one or more opponent_piece
+      #
+      # @param board [Chess::Board]
+      # @param opponent_pieces [Chess::Board#white_pieces, Chess::Board#black_pieces]
       def in_check?(board, opponent_pieces)
         @in_check = false
         opponent_pieces.each do |piece|

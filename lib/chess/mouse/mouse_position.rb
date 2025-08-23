@@ -44,7 +44,8 @@ module Chess
     end
 
     # checks if a button was touched
-    # @return [Boolean]
+    # @example x and y are decomposed from array
+    #   buttons_touched?([x,y])
     def buttons_touched?((coord_x, coord_y))
       y = 11
       return false if coord_y != y

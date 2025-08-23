@@ -9,6 +9,8 @@ module Chess
 
     # writes a save to the save file
     #
+    # @param name [String]
+    # @param data [String]
     # @return [void]
     def save(name, data)
       file_data = read

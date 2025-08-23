@@ -45,10 +45,15 @@ module Chess
     end
 
     # checks if a pos is nil value
+    # @example file and rank are decomposed from array
+    #   pos_nil?(['d',0])
     def pos_nil?((file, rank))
       piece_at(file, rank).nil?
     end
 
+    # checks if a pos is in range
+    # @example file and rank are decomposed from array
+    #   pos_in_range?(['d',0])
     def pos_in_range?((file, rank))
       first_rank = 0
       last_rank = 7

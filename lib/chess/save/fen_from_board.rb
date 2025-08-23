@@ -6,6 +6,8 @@ module Chess
   module Save
     # Fen code from Board
     module FenCodeFromBoard
+      # generate FEN code from given board
+      # @param board [Chess::Board]
       def generate_fen_code(board)
         piece_placement = fen_piece_placement(board.data)
         current_player = board.current_player
@@ -17,6 +19,9 @@ module Chess
         "#{piece_placement} #{current_player} #{castling_rights} #{en_passant} #{half_move} #{full_move}"
       end
 
+      # create fen piece placement for given board_data
+      # @param board_data [Hash]
+      # @return [String] piece_placement
       def fen_piece_placement(board_data)
         string = ''
         (0..7).reverse_each do |rank|
@@ -26,6 +31,10 @@ module Chess
         string
       end
 
+      # helper method for {#fen_piece_placement}
+      # @param board_data [Hash]
+      # @param rank [Integer]
+      # @return [String] piece_placement_part
       def fen_piece_placement_by_rank(board_data, rank) # rubocop:disable Metrics/MethodLength
         string = ''
         empty_space = 0
@@ -43,6 +52,10 @@ module Chess
         string
       end
 
+      # return letter of piece
+      #
+      # @param piece any subclass of {Chess::Pieces::Piece}
+      # @return [String] piece_letter
       def letter_of(piece) # rubocop:disable Metrics/CyclomaticComplexity,Metrics/MethodLength
         letter = case piece
                  when Pieces::King

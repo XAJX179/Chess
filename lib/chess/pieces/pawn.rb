@@ -19,7 +19,6 @@ module Chess
 
       # checks if it's first move of pawn
       # @param rank [Integer]
-      # @return [Boolean]
       def first_move?(rank)
         (rank == 1 && white?) || (rank == 6 && black?)
       end
@@ -71,6 +70,9 @@ module Chess
         moves
       end
 
+      # helper method for {#two_step_forward}
+      # @param (see #two_step_forward)
+      # @return (see #two_step_forward)
       def north_two_step(board, file, rank)
         north_one_step = board.north_pos(file, rank)
         north_two_step = board.north_pos(*north_one_step)
@@ -79,6 +81,9 @@ module Chess
         north_two_step
       end
 
+      # helper method for {#two_step_forward}
+      # @param (see #two_step_forward)
+      # @return (see #two_step_forward)
       def south_two_step(board, file, rank)
         south_one_step = board.south_pos(file, rank)
         south_two_step = board.south_pos(*south_one_step)
@@ -106,6 +111,9 @@ module Chess
         moves
       end
 
+      # helper method for {#cross_side_attack}
+      # @param (see #cross_side_attack)
+      # @return (see #cross_side_attack)
       def north_attack(board, file, rank)
         moves = []
         north_east = board.north_east_pos(file, rank)
@@ -116,6 +124,9 @@ module Chess
         moves
       end
 
+      # helper method for {#cross_side_attack}
+      # @param (see #cross_side_attack)
+      # @return (see #cross_side_attack)
       def south_attack(board, file, rank)
         moves = []
         south_east = board.south_east_pos(file, rank)
@@ -128,6 +139,10 @@ module Chess
         moves
       end
 
+      # moves for attacking an pawn which is a {Chess::Board#possible_en_passant_target}
+      #
+      # @param (see #cross_side_attack)
+      # @return (see #cross_side_attack)
       def attack_en_passant(board, file, rank) # rubocop:disable Metrics/AbcSize,Metrics/MethodLength
         moves = []
         if white?

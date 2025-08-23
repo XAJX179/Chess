@@ -6,6 +6,7 @@ module Chess
   module Display
     # displays board with ASCII characters
     # @param board_data [Hash]
+    # @param valid_moves [Array]
     # @return [void]
     def display_board(board_data, valid_moves = [])
       print_files(board_data)
@@ -16,6 +17,7 @@ module Chess
     # prints the board data
     #
     # @param board_data [Hash]
+    # @param valid_moves [Array]
     # @return [void]
     def print_board_data(board_data, valid_moves)
       shift_rank = 1
@@ -46,6 +48,7 @@ module Chess
     # @param file [String]
     # @param rank [Integer]
     # @param bg_color_name [Symbol]
+    # @param valid_moves [Array]
     # @return [void]
     def print_square(board_data, file, rank, bg_color_name, valid_moves)
       piece = board_data[file][rank]
@@ -57,6 +60,13 @@ module Chess
       end
     end
 
+    # helper method for {#print_square}
+    #
+    # @param piece any subclass of {Chess::Pieces::Piece}
+    # @param bg_color_name [Symbol]
+    # @param square_pos [Array]
+    # @param valid_moves [Array]
+    # @return [void]
     def print_piece_square(piece, bg_color_name, square_pos, valid_moves) # rubocop:disable Metrics/MethodLength
       case piece
       when Pieces::Rook
@@ -93,6 +103,8 @@ module Chess
     # @param piece [Chess::Piece]
     # @param unicode [String]
     # @param bg_color_name [Symbol]
+    # @param square_pos [Array]
+    # @param valid_moves [Array]
     # @return [String]
     def square_string(piece, unicode, bg_color_name, square_pos, valid_moves)
       if piece == ''
@@ -107,6 +119,11 @@ module Chess
       end
     end
 
+    # gives dot for move for the pos if it's inside valid_moves
+    #
+    # @param square_pos [Array]
+    # @param valid_moves [Array]
+    # @return [String] string (with dot or empty)
     def move_dots(square_pos, valid_moves)
       if valid_moves.include?(square_pos)
         color("\u{2022}", :black)
@@ -115,6 +132,10 @@ module Chess
       end
     end
 
+    # gives dot for king in check if given king is in check
+    #
+    # @param king [Chess::Pieces::King]
+    # @return [String] string (with red dot or empty)
     def king_check_dot(king)
       if king.in_check
         color("\u{29BE}", :red)
@@ -133,6 +154,11 @@ module Chess
       puts
     end
 
+    # clears the display and redraws the board with given board_data
+    #
+    # @param board_data [Hash]
+    # @param valid_moves [Array]
+    # @return [void]
     def redraw_display(board_data, valid_moves = [])
       system 'clear'
       display_board(board_data, valid_moves)

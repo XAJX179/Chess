@@ -64,6 +64,9 @@ module Chess
       end
     end
 
+    # Prompts User to enter a save name
+    #
+    # @return [String] save_name
     def prompt_save_name
       prompt = TTY::Prompt.new
       prompt.ask('Enter a valid save name : ') do |question|

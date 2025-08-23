@@ -11,6 +11,7 @@ module Chess
 
       # serializes the save data with save_name as keys and FEN as values
       #
+      # @param data [Hash]
       # @return [String]
       def serialize(data)
         SERIALIZER.dump data

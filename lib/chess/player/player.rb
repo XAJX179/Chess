@@ -15,6 +15,7 @@ module Chess
     # select a move
     # @param board [Chess::Board]
     # @param move_pos [Array]
+    # @return [void]
     def select_move(board, move_pos)
       if @selected_piece.valid_moves.include?(move_pos)
         play_move_by_type(@selected_piece, board, move_pos)
@@ -23,6 +24,9 @@ module Chess
       end
     end
 
+    # change player turn
+    # @param board [Chess::Board]
+    # @return [void]
     def change_player_turn(board)
       current_player_color = board.current_player
       board.current_player = if current_player_color == 'w'

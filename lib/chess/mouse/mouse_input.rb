@@ -78,6 +78,8 @@ module Chess
       end
     end
 
+    # checks if exit code 0 is returned
+    # @param value [Integer,nil]
     def game_exit?(value)
       value == 0 # rubocop:disable Style/NumericPredicate
     end

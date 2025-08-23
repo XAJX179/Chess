@@ -6,6 +6,10 @@ module Chess
   module Pieces
     # Knight
     class Knight < Piece
+      # all possible_moves of Knight
+      #
+      # @param board [Chess::Board]
+      # @return [Array] possible_moves_arr
       def possible_moves(board)
         file = @pos[0]
         rank = @pos[1]
