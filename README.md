@@ -16,11 +16,15 @@
 
 pre-requisite: ruby >= 3.2
 
-` gem install chess_tui `
+```bash
+gem install chess_tui
+```
 
 ## uninstall
 
-` gem uninstall chess_tui `
+```bash
+gem uninstall chess_tui
+```
 
 ## Documentation
 
