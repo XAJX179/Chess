@@ -28,6 +28,8 @@ pre-requisite: ruby >= 3.2
 
 ## 🫣 Peek
 
+![screenshot](https://raw.githubusercontent.com/XAJX179/Chess/refs/heads/main/docs/images/chess_tui_screenshot.png)
+
 showcase video -
 
 <https://github.com/user-attachments/assets/180d563f-16d9-4f26-9b3a-c16bb66271a2>
