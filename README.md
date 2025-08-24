@@ -7,23 +7,27 @@
 [![Ruby Test](https://github.com/XAJX179/Chess/actions/workflows/tests.yml/badge.svg)](https://github.com/XAJX179/Chess/actions/workflows/tests.yml)
 [![Rubocop](https://github.com/XAJX179/Chess/actions/workflows/rubocop.yml/badge.svg)](https://github.com/XAJX179/Chess/actions/workflows/rubocop.yml)
 
-> [!IMPORTANT]
-> **This project is In-Progress**
+## About
 
-## Overview
+  Chess game with terminal ui and mouse click support,
+  load game with FEN codes or start new!
 
-Chess is a terminal-based game that brings the classic game of chess to your
-command line.
-It aims to offer a robust experience with standard chess rules, interactive
-gameplay, and more.
+## Install
+
+pre-requisite: ruby >= 3.2
+
+` gem install chess_tui `
+
+## uninstall
+
+` gem uninstall chess_tui `
 
 ## Documentation
-
-> [!NOTE]
-> **In-Progress**
 
 [Documentation](https://xajx179.github.io/Chess/)
 
 ## 🫣 Peek
 
-soon...
+showcase video -
+
+<https://github.com/user-attachments/assets/180d563f-16d9-4f26-9b3a-c16bb66271a2>
