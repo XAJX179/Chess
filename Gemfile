@@ -4,6 +4,8 @@ source 'https://rubygems.org'
 
 # gem "rails"
 
+gemspec
+
 gem 'rubocop', '~> 1.78'
 
 gem 'rubocop-performance', '~> 1.25'
@@ -19,7 +21,5 @@ gem 'rdoc', '~> 6.14'
 gem 'tty-prompt', '~> 0.23.1'
 
 gem 'bump', '~> 0.10.0'
-
-gem 'forwardable', '~> 1.3'
 
 gem 'rake', '~> 13.3'

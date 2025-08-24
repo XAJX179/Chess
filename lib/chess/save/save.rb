@@ -16,7 +16,7 @@ module Chess
       file_data = read
       file_data[name] = data
       new_data_serialized = serialize(file_data)
-      File.write('save.json', new_data_serialized)
+      File.write(SAVE_PATH, new_data_serialized)
     end
 
     # reads and returns saves from the save file.
@@ -24,7 +24,7 @@ module Chess
     #
     # @return [Hash]
     def read
-      contents = File.read('save.json')
+      contents = File.read(SAVE_PATH)
       unserialize(contents)
     end
   end

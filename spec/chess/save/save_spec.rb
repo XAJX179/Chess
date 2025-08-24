@@ -6,7 +6,7 @@ describe 'Chess::Save' do
   describe '#read' do
     context 'when called' do
       it 'reads and unserializes the save.json' do
-        contents = File.read('save.json')
+        contents = File.read(SAVE_PATH)
         expect(game.read).to eq game.unserialize(contents)
       end
     end

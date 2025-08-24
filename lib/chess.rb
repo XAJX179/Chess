@@ -34,6 +34,7 @@ require_relative 'chess/play_game'
 
 # Chess
 module Chess
+  SAVE_PATH = File.expand_path('../save.json', __dir__)
   # calls {start_game} the script file at chess/play_game
   #
   # @return [void]

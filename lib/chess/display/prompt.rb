@@ -12,7 +12,7 @@ module Chess
       prompt = TTY::Prompt.new
       prompt.select('Create new game or load save/code?') do |menu|
         menu.choice name: 'New Game', value: 1
-        if File.file?('save.json') # if save.json exists
+        if File.file?(SAVE_PATH) # if save.json exists
           menu.choice name: 'Load Save', value: 2
         else
           menu.choice name: 'Load Save', disabled: '(No Save Found.)'
