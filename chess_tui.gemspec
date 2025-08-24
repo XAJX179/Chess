@@ -24,7 +24,6 @@ Gem::Specification.new do |spec|
   spec.files = Dir['lib/**/*.rb']
   spec.files += Dir['bin/*']
   spec.files += ['save.json']
-  pp spec.files
 
   spec.executables = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
