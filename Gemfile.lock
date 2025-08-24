@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    chess_tui (0.41.4)
+    chess_tui (0.41.5)
       tty-prompt (~> 0.23.1)
 
 GEM

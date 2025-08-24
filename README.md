@@ -18,6 +18,7 @@
 
 > [!IMPORTANT]
 > pre-requisite: ruby >= 3.2
+> a terminal which supports xterm ctrl sequences (tested on xfce terminal)
 
 ```bash
 gem install chess_tui
@@ -36,4 +37,3 @@ gem uninstall chess_tui
 ## 🫣 Peek
 
 ![screenshot](https://raw.githubusercontent.com/XAJX179/Chess/refs/heads/main/docs/images/chess_tui_screenshot.png)
-

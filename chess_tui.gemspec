@@ -9,7 +9,9 @@ Gem::Specification.new do |spec|
   spec.email = ['xajx179@gmail.com']
 
   spec.summary = 'Chess game with terminal display and mouse input , load games with FEN code or start new!'
-  spec.description = 'Chess game with terminal UI written in ruby, check out docs: https://xajx179.github.io/Chess \
+  spec.description = 'Chess game with terminal UI written in ruby,
+    prerequisite: a terminal which supports xterm ctrl sequences. (tested on xfce terminal)
+    check out docs: https://xajx179.github.io/Chess
     & source: https://github.com/XAJX179/Chess'
   spec.homepage = 'https://xajx179.github.io/Chess'
   spec.license = 'MIT'
